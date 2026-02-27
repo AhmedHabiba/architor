@@ -16,7 +16,7 @@
   <rect x="50" y="60" width="720" height="80" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1.5" filter="url(#ds)"/>
   <rect x="50" y="60" width="7" height="80" rx="3.5" fill="#85C1E9"/>
   <text x="82" y="88" fill="#1B5E8A" font-size="15" font-weight="700">CLAUDE.md — Identity &amp; Behavioral Rules</text>
-  <text x="82" y="108" fill="#555" font-size="12">Adversarial personality, phase discipline, anti-sycophancy, decision-logging rules</text>
+  <text x="82" y="108" fill="#555" font-size="12">Adversarial personality, phase 2A/2B/2C discipline, anti-sycophancy, reopen rules, decision-logging</text>
   <text x="82" y="128" fill="#999" font-size="11" font-style="italic">Probabilistic — Claude follows these, but may drift over 100+ exchanges</text>
   <rect x="680" y="75" width="72" height="26" rx="13" fill="#AED6F1"/>
   <text x="716" y="93" text-anchor="middle" fill="#1B5E8A" font-size="11" font-weight="700">SOFT</text>
@@ -25,8 +25,8 @@
   <rect x="50" y="155" width="720" height="80" rx="10" fill="#FEF9E7" stroke="#F9E79F" stroke-width="1.5" filter="url(#ds)"/>
   <rect x="50" y="155" width="7" height="80" rx="3.5" fill="#F4D03F"/>
   <text x="82" y="183" fill="#7D6608" font-size="15" font-weight="700">Skills — Auto-Activating Behavioral Contexts</text>
-  <text x="82" y="203" fill="#555" font-size="12">Methodology orchestration, pattern knowledge, adversarial challenge, state management</text>
-  <text x="82" y="223" fill="#999" font-size="11" font-style="italic">Medium — activates by context, enforces phase boundaries and review posture</text>
+  <text x="82" y="203" fill="#555" font-size="12">Methodology orchestration (incl. sub-phases), pattern knowledge, adversarial challenge, state + reopen mgmt</text>
+  <text x="82" y="223" fill="#999" font-size="11" font-style="italic">Medium — activates by context, enforces phase boundaries, needs-review handling, and review posture</text>
   <rect x="668" y="170" width="84" height="26" rx="13" fill="#F9E79F"/>
   <text x="710" y="188" text-anchor="middle" fill="#7D6608" font-size="11" font-weight="700">MEDIUM</text>
 
@@ -34,8 +34,8 @@
   <rect x="50" y="250" width="720" height="80" rx="10" fill="#FDF2E9" stroke="#F5CBA7" stroke-width="1.5" filter="url(#ds)"/>
   <rect x="50" y="250" width="7" height="80" rx="3.5" fill="#E59866"/>
   <text x="82" y="278" fill="#935116" font-size="15" font-weight="700">Slash Commands — Structured Prompts with Gate Checks</text>
-  <text x="82" y="298" fill="#555" font-size="12">/analyze-prd · /propose-methodology · /design-component · /accept · /refine · /alternative</text>
-  <text x="82" y="318" fill="#999" font-size="11" font-style="italic">Medium — read state.json before executing, validate prerequisites, enforce sequence</text>
+  <text x="82" y="298" fill="#555" font-size="12">/analyze-prd · /propose-methodology · /design-component · /accept · /refine · /alternative · /reopen</text>
+  <text x="82" y="318" fill="#999" font-size="11" font-style="italic">Medium — read state.json before executing, validate prerequisites, auto-route sub-phases, enforce sequence</text>
   <rect x="668" y="265" width="84" height="26" rx="13" fill="#F5CBA7"/>
   <text x="710" y="283" text-anchor="middle" fill="#935116" font-size="11" font-weight="700">MEDIUM</text>
 
@@ -43,7 +43,7 @@
   <rect x="50" y="345" width="720" height="80" rx="10" fill="#EAFAF1" stroke="#82E0AA" stroke-width="1.5" filter="url(#ds)"/>
   <rect x="50" y="345" width="7" height="80" rx="3.5" fill="#27AE60"/>
   <text x="82" y="373" fill="#1E8449" font-size="15" font-weight="700">Hooks + Python Scripts — Deterministic Enforcement</text>
-  <text x="82" y="393" fill="#555" font-size="12">validate-transition.py blocks illegal state.json writes · log-decision.py auto-records changes</text>
+  <text x="82" y="393" fill="#555" font-size="12">Schema validation · phase gates · reopen limits · component injection/deletion blocks · state backup</text>
   <text x="82" y="413" fill="#999" font-size="11" font-style="italic">Hard — exit code 1 blocks the action. No prompt engineering can bypass a Python script.</text>
   <rect x="680" y="360" width="72" height="26" rx="13" fill="#82E0AA"/>
   <text x="716" y="378" text-anchor="middle" fill="#1E8449" font-size="11" font-weight="700">HARD</text>

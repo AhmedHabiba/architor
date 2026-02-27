@@ -1,0 +1,39 @@
+{
+  "name": "architor",
+  "version": "2.0.0",
+  "description": "Turn Claude Code into a rigorous, phase-gated architecture design assistant",
+  "license": "MIT",
+  "author": "Architecture Agent Contributors",
+  "keywords": [
+    "claude-code",
+    "architecture",
+    "design-review",
+    "solution-architecture",
+    "cli"
+  ],
+  "bin": {
+    "architor": "./bin/architor.js"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0"
+  },
+  "devDependencies": {
+    "vitest": "^2.0.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  }
+}

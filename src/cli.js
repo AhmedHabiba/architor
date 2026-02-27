@@ -1,0 +1,45 @@
+const { Command } = require('commander');
+const chalk = require('chalk');
+const { version } = require('../package.json');
+const { runInit } = require('./init');
+const { runVerify } = require('./verify');
+const { runReset } = require('./reset');
+
+function run(argv) {
+  const program = new Command();
+
+  program
+    .name('architor')
+    .description('Turn Claude Code into a rigorous architecture design assistant')
+    .version(version, '-v, --version', 'Show version number');
+
+  program
+    .command('init')
+    .description('Scaffold .arch/ and .claude/ directories into current project')
+    .option('--name <name>', 'Set project name in state.json')
+    .option('--force', 'Overwrite existing files without prompting')
+    .action((options) => runInit(process.cwd(), options));
+
+  program
+    .command('verify')
+    .description('Check prerequisites (Claude Code, Python 3, git)')
+    .action(() => runVerify());
+
+  program
+    .command('reset')
+    .description('Reset state.json to initial state')
+    .option('--yes', 'Skip confirmation prompt')
+    .action((options) => runReset(process.cwd(), options));
+
+  if (argv.length <= 2) {
+    console.log('');
+    console.log(chalk.bold('  architor') + ' — Architecture Agent for Claude Code');
+    console.log('');
+    program.outputHelp();
+    return;
+  }
+
+  program.parse(argv);
+}
+
+module.exports = { run };
