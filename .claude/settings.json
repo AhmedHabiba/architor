@@ -1,0 +1,53 @@
+{
+  "permissions": {
+    "allowedTools": [
+      "Read",
+      "Write(.arch/*)",
+      "Write(output/*)",
+      "Bash(python3 .arch/scripts/*)",
+      "Bash(cat *)",
+      "Bash(ls *)",
+      "Bash(date *)"
+    ],
+    "deny": [
+      "Write(CLAUDE.md)",
+      "Write(.claude/*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write(.arch/state.json)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .arch/scripts/validate-transition.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write(.arch/*.md)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .arch/scripts/log-decision.py",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write(.arch/state.json)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .arch/scripts/log-decision.py",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

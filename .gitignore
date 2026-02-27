@@ -1,0 +1,26 @@
+# Architecture state files (user-specific working data)
+.arch/phase1-evaluation.md
+.arch/phase2-methodology.md
+.arch/phase2-components-overview.md
+.arch/components/*.md
+!.arch/components/.gitkeep
+.arch/reviews/*.md
+!.arch/reviews/.gitkeep
+
+# Output (generated deliverables)
+output/architecture-document.md
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc

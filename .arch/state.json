@@ -1,0 +1,43 @@
+{
+  "project_name": "",
+  "created_at": "",
+  "current_phase": "not_started",
+  "phases": {
+    "evaluation": {
+      "status": "not_started",
+      "prd_loaded": false,
+      "org_context_loaded": false,
+      "analysis_complete": false,
+      "accepted": false,
+      "accepted_at": null,
+      "open_gaps": []
+    },
+    "methodology": {
+      "status": "not_started",
+      "pattern_proposed": false,
+      "pattern_accepted": false,
+      "components_overview_proposed": false,
+      "components_overview_accepted": false,
+      "accepted": false,
+      "accepted_at": null,
+      "proposed_pattern": "",
+      "component_count": 0
+    },
+    "components": {
+      "status": "not_started",
+      "components": {},
+      "current_component": null,
+      "accepted_count": 0,
+      "total_count": 0,
+      "all_accepted": false
+    },
+    "finalization": {
+      "status": "not_started",
+      "document_generated": false,
+      "document_approved": false,
+      "approved_at": null
+    }
+  },
+  "decision_count": 0,
+  "model_used": ""
+}
