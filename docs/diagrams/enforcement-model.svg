@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <filter id="ds" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.07"/>
+    </filter>
+    <marker id="arr" viewBox="0 0 10 7" refX="5" refY="7" markerWidth="10" markerHeight="7" orient="auto">
+      <polygon points="0 0, 10 0, 5 7" fill="#1B5E8A"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="480" rx="12" fill="#F7F9FC"/>
+
+  <text x="450" y="38" text-anchor="middle" fill="#0F3652" font-size="20" font-weight="700">Enforcement Model — Soft to Hard</text>
+
+  <!-- Layer 1: CLAUDE.md -->
+  <rect x="50" y="60" width="720" height="80" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1.5" filter="url(#ds)"/>
+  <rect x="50" y="60" width="7" height="80" rx="3.5" fill="#85C1E9"/>
+  <text x="82" y="88" fill="#1B5E8A" font-size="15" font-weight="700">CLAUDE.md — Identity &amp; Behavioral Rules</text>
+  <text x="82" y="108" fill="#555" font-size="12">Adversarial personality, phase discipline, anti-sycophancy, decision-logging rules</text>
+  <text x="82" y="128" fill="#999" font-size="11" font-style="italic">Probabilistic — Claude follows these, but may drift over 100+ exchanges</text>
+  <rect x="680" y="75" width="72" height="26" rx="13" fill="#AED6F1"/>
+  <text x="716" y="93" text-anchor="middle" fill="#1B5E8A" font-size="11" font-weight="700">SOFT</text>
+
+  <!-- Layer 2: Skills -->
+  <rect x="50" y="155" width="720" height="80" rx="10" fill="#FEF9E7" stroke="#F9E79F" stroke-width="1.5" filter="url(#ds)"/>
+  <rect x="50" y="155" width="7" height="80" rx="3.5" fill="#F4D03F"/>
+  <text x="82" y="183" fill="#7D6608" font-size="15" font-weight="700">Skills — Auto-Activating Behavioral Contexts</text>
+  <text x="82" y="203" fill="#555" font-size="12">Methodology orchestration, pattern knowledge, adversarial challenge, state management</text>
+  <text x="82" y="223" fill="#999" font-size="11" font-style="italic">Medium — activates by context, enforces phase boundaries and review posture</text>
+  <rect x="668" y="170" width="84" height="26" rx="13" fill="#F9E79F"/>
+  <text x="710" y="188" text-anchor="middle" fill="#7D6608" font-size="11" font-weight="700">MEDIUM</text>
+
+  <!-- Layer 3: Commands -->
+  <rect x="50" y="250" width="720" height="80" rx="10" fill="#FDF2E9" stroke="#F5CBA7" stroke-width="1.5" filter="url(#ds)"/>
+  <rect x="50" y="250" width="7" height="80" rx="3.5" fill="#E59866"/>
+  <text x="82" y="278" fill="#935116" font-size="15" font-weight="700">Slash Commands — Structured Prompts with Gate Checks</text>
+  <text x="82" y="298" fill="#555" font-size="12">/analyze-prd · /propose-methodology · /design-component · /accept · /refine · /alternative</text>
+  <text x="82" y="318" fill="#999" font-size="11" font-style="italic">Medium — read state.json before executing, validate prerequisites, enforce sequence</text>
+  <rect x="668" y="265" width="84" height="26" rx="13" fill="#F5CBA7"/>
+  <text x="710" y="283" text-anchor="middle" fill="#935116" font-size="11" font-weight="700">MEDIUM</text>
+
+  <!-- Layer 4: Hooks -->
+  <rect x="50" y="345" width="720" height="80" rx="10" fill="#EAFAF1" stroke="#82E0AA" stroke-width="1.5" filter="url(#ds)"/>
+  <rect x="50" y="345" width="7" height="80" rx="3.5" fill="#27AE60"/>
+  <text x="82" y="373" fill="#1E8449" font-size="15" font-weight="700">Hooks + Python Scripts — Deterministic Enforcement</text>
+  <text x="82" y="393" fill="#555" font-size="12">validate-transition.py blocks illegal state.json writes · log-decision.py auto-records changes</text>
+  <text x="82" y="413" fill="#999" font-size="11" font-style="italic">Hard — exit code 1 blocks the action. No prompt engineering can bypass a Python script.</text>
+  <rect x="680" y="360" width="72" height="26" rx="13" fill="#82E0AA"/>
+  <text x="716" y="378" text-anchor="middle" fill="#1E8449" font-size="11" font-weight="700">HARD</text>
+
+  <!-- Arrow on right -->
+  <line x1="795" y1="90" x2="795" y2="395" stroke="#1B5E8A" stroke-width="2.5" marker-end="url(#arr)"/>
+  <text x="820" y="250" text-anchor="middle" fill="#1B5E8A" font-size="12" font-weight="600" transform="rotate(90,820,250)">Increasing Enforcement</text>
+
+  <!-- state.json callout -->
+  <rect x="300" y="442" width="300" height="30" rx="15" fill="#0F3652"/>
+  <text x="450" y="462" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">state.json — Single Source of Truth on Disk</text>
+</svg>
