@@ -4,6 +4,10 @@
   "description": "Turn Claude Code into a rigorous, phase-gated architecture design assistant",
   "license": "MIT",
   "author": "Architecture Agent Contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisodev/architor.git"
+  },
   "keywords": [
     "claude-code",
     "architecture",
