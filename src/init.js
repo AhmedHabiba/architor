@@ -20,7 +20,7 @@ const PROTECT_FILES = [
 
 async function runInit(targetDir, options) {
   console.log('');
-  console.log(chalk.bold('  architor init'));
+  console.log(chalk.bold('  arch-agent init'));
   console.log('');
 
   const archDir = path.join(targetDir, '.arch');

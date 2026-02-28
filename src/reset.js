@@ -5,13 +5,13 @@ const readline = require('readline');
 
 async function runReset(targetDir, options) {
   console.log('');
-  console.log(chalk.bold('  architor reset'));
+  console.log(chalk.bold('  arch-agent reset'));
   console.log('');
 
   const stateFile = path.join(targetDir, '.arch', 'state.json');
 
   if (!await fs.pathExists(stateFile)) {
-    console.log(chalk.red('  No .arch/state.json found. Run `architor init` first.\n'));
+    console.log(chalk.red('  No .arch/state.json found. Run `arch-agent init` first.\n'));
     process.exit(1);
   }
 

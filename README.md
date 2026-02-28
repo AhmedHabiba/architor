@@ -5,7 +5,7 @@ Turn Claude Code into a rigorous, phase-gated architecture design assistant.
 ## Quick Start
 
 ```bash
-npx architor init --name "My Project"
+npx arch-agent init --name "My Project"
 ```
 
 Then:
@@ -28,16 +28,16 @@ Every decision requires explicit human acceptance. Every decision is logged with
 
 ```bash
 # Scaffold into current directory
-npx architor init
+npx arch-agent init
 
 # With project name
-npx architor init --name "Payment Platform"
+npx arch-agent init --name "Payment Platform"
 
 # Check prerequisites
-npx architor verify
+npx arch-agent verify
 
 # Reset state (preserves your PRD and org-context)
-npx architor reset
+npx arch-agent reset
 ```
 
 **Requirements:** Node.js 18+, Claude Code, Python 3, git

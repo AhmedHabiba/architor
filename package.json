@@ -1,5 +1,5 @@
 {
-  "name": "architor",
+  "name": "arch-agent",
   "version": "2.0.1",
   "description": "Turn Claude Code into a rigorous, phase-gated architecture design assistant",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "cli"
   ],
   "bin": {
-    "architor": "./bin/architor.js"
+    "arch-agent": "./bin/architor.js"
   },
   "files": [
     "bin/",

@@ -37,15 +37,15 @@ All fixes block adversarial/malformed input only. Normal workflow is 100% identi
 
 Architor is now an npm package. Install and scaffold with:
 ```bash
-npx architor init
-npx architor init --name "My Project"
+npx arch-agent init
+npx arch-agent init --name "My Project"
 ```
 
 New CLI commands:
-- `architor init` — Scaffold `.arch/` and `.claude/` into any project
-- `architor verify` — Check prerequisites (Claude Code, Python 3, git)
-- `architor reset` — Reset state.json to initial state (with backup)
-- `architor --version` — Show version
+- `arch-agent init` — Scaffold `.arch/` and `.claude/` into any project
+- `arch-agent verify` — Check prerequisites (Claude Code, Python 3, git)
+- `arch-agent reset` — Reset state.json to initial state (with backup)
+- `arch-agent --version` — Show version
 
 ### Phase 2 Split (2A/2B/2C)
 

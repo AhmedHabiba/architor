@@ -15,7 +15,7 @@ async function runVerify(options = {}) {
 
   if (!quiet) {
     console.log('');
-    console.log(chalk.bold('  architor verify'));
+    console.log(chalk.bold('  arch-agent verify'));
     console.log('');
   }
 

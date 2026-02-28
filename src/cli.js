@@ -9,7 +9,7 @@ function run(argv) {
   const program = new Command();
 
   program
-    .name('architor')
+    .name('arch-agent')
     .description('Turn Claude Code into a rigorous architecture design assistant')
     .version(version, '-v, --version', 'Show version number');
 
@@ -33,7 +33,7 @@ function run(argv) {
 
   if (argv.length <= 2) {
     console.log('');
-    console.log(chalk.bold('  architor') + ' — Architecture Agent for Claude Code');
+    console.log(chalk.bold('  arch-agent') + ' — Architecture Agent for Claude Code');
     console.log('');
     program.outputHelp();
     return;

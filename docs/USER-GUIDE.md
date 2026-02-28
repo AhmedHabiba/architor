@@ -12,7 +12,7 @@ A step-by-step guide to running your first architecture design session with Arch
 Verify everything is installed:
 
 ```bash
-npx architor verify
+npx arch-agent verify
 ```
 
 ## Setup (5 minutes)
@@ -21,7 +21,7 @@ npx architor verify
 
 ```bash
 cd your-project
-npx architor init --name "My Project"
+npx arch-agent init --name "My Project"
 ```
 
 This creates three things:
@@ -266,7 +266,7 @@ Use reopens sparingly. The cascading cost is intentional — it makes you think 
 ### If something goes wrong
 - **Agent seems confused about state**: Run `/status` to force a state re-read, or `/clear` to reset conversation context (file state is preserved).
 - **Hook blocks a valid operation**: Check `.arch/state.json` to understand why. The error message from the hook explains the violation.
-- **Need to start over**: `npx architor reset` backs up your state and resets to a clean slate (preserves your PRD and org-context).
+- **Need to start over**: `npx arch-agent reset` backs up your state and resets to a clean slate (preserves your PRD and org-context).
 
 ## Complete Walkthrough Example
 
@@ -274,7 +274,7 @@ Here's a realistic session from start to finish:
 
 ```
 $ cd my-payment-platform
-$ npx architor init --name "Payment Platform"
+$ npx arch-agent init --name "Payment Platform"
 $ claude
 
 You: /analyze-prd

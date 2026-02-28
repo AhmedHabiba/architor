@@ -21,7 +21,7 @@ function runCli(args = '') {
 describe('CLI', () => {
   it('shows help when no command given', () => {
     const result = runCli();
-    expect(result.stdout).toContain('architor');
+    expect(result.stdout).toContain('arch-agent');
     expect(result.stdout).toContain('init');
     expect(result.stdout).toContain('verify');
     expect(result.stdout).toContain('reset');
