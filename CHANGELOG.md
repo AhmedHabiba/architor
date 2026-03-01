@@ -2,6 +2,15 @@
 
 All notable changes to Architor are documented here.
 
+## [2.0.2] — 2026-03-01
+
+### Package metadata fix
+
+- Renamed npm package from `architor` to `arch-agent` (npm typo-squatting policy)
+- Updated repository URL to `AhmedHabiba/architor`
+
+---
+
 ## [2.0.1] — 2026-02-28
 
 ### Security Hardening (9 zero-impact fixes)
