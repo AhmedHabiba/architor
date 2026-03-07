@@ -274,7 +274,7 @@ npx arch-agent import existing-architecture.md --name "My Project"
 
 The agent parses your document and walks through each phase, challenging your existing decisions. Accept what's solid, refine what's outdated. Imported projects get 5 reopens (vs 2) for more iteration room.
 
-**Requirements:** Node.js 18+, [Claude Code](https://docs.anthropic.com/en/docs/claude-code), Python 3, git
+**Requirements:** Node.js 18+, [Claude Code](https://docs.anthropic.com/en/docs/claude-code), Python 3, git. [Tessl](https://tessl.io) is optional — required only if you want to run skill evaluations or publish tiles.
 
 ## Commands
 
@@ -341,6 +341,7 @@ your-project/
 │   ├── prd.md                        # Your requirements (you edit this)
 │   ├── org-context.md                # Team, stack, constraints (you edit this)
 │   ├── decisions.md                  # Auto-generated decision log
+│   ├── existing-architecture.md      # Imported document (arch-agent import only)
 │   ├── scripts/
 │   │   ├── validate-transition.py    # Enforcement hook
 │   │   └── log-decision.py           # Auto-logging hook
@@ -350,9 +351,41 @@ your-project/
 │   ├── settings.json                 # Hook configuration
 │   ├── commands/                     # Slash commands
 │   └── skills/                       # Auto-activating skills
+│       ├── architecture-methodology/ # Core 4-phase workflow skill
+│       ├── architecture-patterns/    # Pattern knowledge base skill
+│       ├── challenge-assumptions/    # Adversarial reviewer skill
+│       └── state-manager/            # State machine skill
 └── output/
     └── architecture-document.md      # Final deliverable
 ```
+
+## Tessl Integration
+
+The skills bundled with arch-agent are packaged as [Tessl](https://tessl.io) tiles — versioned, distributable skill units for Claude Code. Each skill has a `tile.json` manifest and a set of evaluation scenarios under `evals/`.
+
+| Tile | Purpose |
+|------|---------|
+| `ahmed-habiba/architecture-methodology` | Enforces the 4-phase workflow; activates on any system design or architecture discussion |
+| `ahmed-habiba/state-manager` | Reads and writes `.arch/state.json` and `.arch/decisions.md`; tracks phase and component acceptance |
+| `ahmed-habiba/challenge-assumptions` | Adversarial reviewer that questions technology choices, scalability assumptions, and single points of failure |
+| `ahmed-habiba/architecture-patterns` | Knowledge base for pattern selection (microservices, monolith, serverless, event-driven, CQRS) with trade-off comparison |
+
+The root `tessl.json` configures the project in `vendored` mode and pins the `tessl-labs/tessl-skill-eval-scenarios` dependency used by the eval runner.
+
+### Working with tiles
+
+```bash
+# Check tile status and version info
+npx tessl status
+
+# Run evals against a skill tile
+npx tessl eval .claude/skills/architecture-methodology
+
+# Search the Tessl library
+npx tessl search architecture
+```
+
+Tiles are currently marked `private: true`. To publish a tile to the Tessl registry, set `"private": false` in the relevant `tile.json` and run `npx tessl publish`.
 
 ## CLI Reference
 
