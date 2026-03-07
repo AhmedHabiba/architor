@@ -1,0 +1,31 @@
+{
+  "context": "Tests whether the agent correctly follows Phase 3 sequential component design rules: designing only the in_progress component (Auth Service), not touching the pending component (Notification Service), and updating state accurately without jumping to finalization.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Auth Service designed",
+      "description": "A file at `.arch/components/auth-service.md` (or similar) is produced with substantive Auth Service design content",
+      "max_score": 20
+    },
+    {
+      "name": "No Notification Service design",
+      "description": "No file for Notification Service design is produced (e.g. no `.arch/components/notification-service.md`)",
+      "max_score": 20
+    },
+    {
+      "name": "Auth Service status updated",
+      "description": "The output `.arch/state.json` updates the Auth Service component's status (e.g. to `awaiting_acceptance` or `accepted`)",
+      "max_score": 20
+    },
+    {
+      "name": "Notification Service status unchanged",
+      "description": "The output `.arch/state.json` leaves the Notification Service component status as `pending` — unchanged",
+      "max_score": 15
+    },
+    {
+      "name": "No finalization transition",
+      "description": "The output `.arch/state.json` does NOT change `current_phase` to `finalization` — the Notification Service is still pending so finalization is premature",
+      "max_score": 25
+    }
+  ]
+}

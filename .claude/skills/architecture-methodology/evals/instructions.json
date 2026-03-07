@@ -1,0 +1,172 @@
+{
+  "instructions": [
+    {
+      "instruction": "Read `.arch/state.json` before every architecture-related response.",
+      "original_snippets": "Read this file before every architecture-related response. It tracks the current phase and the acceptance status of each component.",
+      "relevant_when": "Any time the agent is asked an architecture-related question or to perform an architecture task.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Determine if the user's request is appropriate for the current phase before responding.",
+      "original_snippets": "2. Determine if the user's request is appropriate for the current phase\n3. If out-of-phase, redirect firmly but helpfully",
+      "relevant_when": "When the user asks something that may belong to a different phase than the current one.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "If the request is out-of-phase, redirect firmly but helpfully rather than complying.",
+      "original_snippets": "If out-of-phase, redirect firmly but helpfully",
+      "relevant_when": "When the user asks a question that belongs to a future or past phase.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Before advancing from Phase 1 to Phase 2, verify all functional requirements are documented.",
+      "original_snippets": "Phase 1 → Phase 2:\n- [ ] All functional requirements documented",
+      "relevant_when": "When completing Phase 1 evaluation and preparing to transition to Phase 2.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Before advancing from Phase 1 to Phase 2, verify non-functional requirements covering availability, security, cost, and monitoring are captured.",
+      "original_snippets": "Phase 1 → Phase 2:\n- [ ] Non-functional requirements (availability, security, cost, monitoring) captured",
+      "relevant_when": "When completing Phase 1 evaluation and preparing to transition to Phase 2.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Before advancing from Phase 1 to Phase 2, verify constraints and risks are identified.",
+      "original_snippets": "Phase 1 → Phase 2:\n- [ ] Constraints and risks identified",
+      "relevant_when": "When completing Phase 1 evaluation and preparing to transition to Phase 2.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Set `requirements_accepted` to `true` in state when Phase 1 is accepted.",
+      "original_snippets": "Phase 1 → Phase 2:\n- [ ] `requirements_accepted` set to `true` in state",
+      "relevant_when": "When transitioning from Phase 1 to Phase 2 after requirements are confirmed.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Before advancing from Phase 2 to Phase 3, verify the architecture pattern is chosen and justified.",
+      "original_snippets": "Phase 2 → Phase 3:\n- [ ] Architecture pattern chosen and justified",
+      "relevant_when": "When completing Phase 2 methodology and preparing to move to component design.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Before advancing from Phase 2 to Phase 3, verify a high-level component list is defined.",
+      "original_snippets": "Phase 2 → Phase 3:\n- [ ] High-level component list defined",
+      "relevant_when": "When completing Phase 2 methodology and preparing to move to component design.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Before advancing from Phase 2 to Phase 3, verify the technology stack is decided with rationale.",
+      "original_snippets": "Phase 2 → Phase 3:\n- [ ] Technology stack decided with rationale",
+      "relevant_when": "When completing Phase 2 methodology and preparing to move to component design.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Set `methodology_accepted` to `true` in state when Phase 2 is accepted.",
+      "original_snippets": "Phase 2 → Phase 3:\n- [ ] `methodology_accepted` set to `true` in state",
+      "relevant_when": "When transitioning from Phase 2 to Phase 3 after methodology is confirmed.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Before advancing from Phase 3 to Phase 4, verify all components have `status: accepted` in state.",
+      "original_snippets": "Phase 3 → Phase 4:\n- [ ] All components have `\"status\": \"accepted\"` in state",
+      "relevant_when": "When all components appear designed and the user wants to move to finalization.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Before advancing from Phase 3 to Phase 4, verify no components remain `in_progress` or `pending`.",
+      "original_snippets": "Phase 3 → Phase 4:\n- [ ] No components remain `in_progress` or `pending`",
+      "relevant_when": "When attempting to finalize the architecture before all components are accepted.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "During Phase 4, validate the solution document against Phase 1 requirements before producing deliverables.",
+      "original_snippets": "Phase 4 completion:\n- [ ] Solution document validated against Phase 1 requirements\n- [ ] All acceptance criteria met",
+      "relevant_when": "When generating the final architecture document in Phase 4.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Do not make specific technology recommendations during Phase 1 (Evaluation); redirect instead.",
+      "original_snippets": "Cannot discuss in Phase 1 (Evaluation):\n- Specific technology recommendations\n→ Redirect: \"Let's finish evaluating the requirements first.\"",
+      "relevant_when": "When a user asks about specific technologies while Phase 1 is in progress.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Do not discuss component design details during Phase 1; redirect instead.",
+      "original_snippets": "Cannot discuss in Phase 1 (Evaluation):\n- Component design details\n→ Redirect: \"Let's finish evaluating the requirements first.\"",
+      "relevant_when": "When a user asks about specific component designs while Phase 1 is active.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Do not discuss architecture patterns during Phase 1; redirect instead.",
+      "original_snippets": "Cannot discuss in Phase 1 (Evaluation):\n- Architecture patterns\n→ Redirect: \"Let's finish evaluating the requirements first.\"",
+      "relevant_when": "When a user proposes or asks about architecture patterns before requirements are complete.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Use the redirect message: \"Let's finish evaluating the requirements first. Technology decisions without understanding the requirements lead to resume-driven development.\"",
+      "original_snippets": "→ Redirect: \"Let's finish evaluating the requirements first. Technology decisions without understanding the requirements lead to resume-driven development.\"",
+      "relevant_when": "When redirecting a Phase 1 out-of-phase request about technology or patterns.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Do not discuss individual component implementation details during Phase 2; redirect instead.",
+      "original_snippets": "Cannot discuss in Phase 2 (Methodology):\n- Individual component implementation details\n→ Redirect: \"We're deciding the big picture right now.\"",
+      "relevant_when": "When a user asks for per-component details while Phase 2 is active.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Do not discuss specific API contracts or data schemas during Phase 2; redirect instead.",
+      "original_snippets": "Cannot discuss in Phase 2 (Methodology):\n- Specific API contracts or data schemas",
+      "relevant_when": "When a user asks for API specifications or data models during Phase 2.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Do not discuss detailed technology configurations during Phase 2; redirect instead.",
+      "original_snippets": "Cannot discuss in Phase 2 (Methodology):\n- Detailed technology configurations",
+      "relevant_when": "When a user asks for configuration-level technology decisions during Phase 2.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "During Phase 3, do not accept or design Component N+1 before Component N is accepted.",
+      "original_snippets": "Cannot skip in Phase 3 (Components):\n- Cannot accept Component N+1 before Component N is accepted\n→ Redirect: \"Component [X] needs to be accepted first.\"",
+      "relevant_when": "When a user wants to jump ahead to a later component while the current one is still in_progress.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "During Phase 3, do not jump to finalization if any components remain pending.",
+      "original_snippets": "Cannot skip in Phase 3 (Components):\n- Cannot jump to finalization with pending components",
+      "relevant_when": "When a user tries to move to Phase 4 before all Phase 3 components are accepted.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Flag vague deferrals such as \"we'll figure it out later\" and ask what is being deferred and the worst-case if it proves harder than expected.",
+      "original_snippets": "\"We'll figure it out later\" → \"That's a risk we should quantify now. What specific aspect are you deferring, and what's the worst case if it's harder than expected?\"",
+      "relevant_when": "When a user defers a decision or risk with a vague statement during any phase.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Flag any technology mentioned without justification and ask why that technology, what alternatives were considered, and how it fits the team's experience.",
+      "original_snippets": "Technology mentioned without justification → \"Why [Technology X] specifically? What alternatives did you consider? How does it fit your team's experience?\"",
+      "relevant_when": "When a user proposes a specific technology without explaining the rationale.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Flag missing NFRs (availability, security, monitoring, cost) when they are absent and ask the team to address them.",
+      "original_snippets": "Missing NFRs → \"You haven't mentioned [availability/security/monitoring/cost] for this component. In production, this will matter. Let's address it now.\"",
+      "relevant_when": "When a design proposal or requirement set omits one or more of the four key NFR categories.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Flag over-engineering when component count exceeds team size multiplied by two, and ask if any components can be consolidated.",
+      "original_snippets": "Over-engineering signals → If component count > team size × 2, flag: \"You have [N] components for a team of [M]. Each component adds operational overhead. Can any be consolidated?\"",
+      "relevant_when": "When a proposed architecture has many more components than the team can reasonably operate.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Flag copy-paste architecture by questioning whether the proposal is mimicking large-scale companies (Netflix, Google, Uber) whose engineer count far exceeds the team's.",
+      "original_snippets": "Copy-paste architecture → \"This looks like [Netflix/Google/Uber]'s architecture. They have 1000+ engineers. You have [N]. What specifically about your requirements demands this complexity?\"",
+      "relevant_when": "When a user proposes an architecture that mirrors well-known large-scale systems without justifying the need for that complexity.",
+      "why_given": "new knowledge"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "total_scenarios": 5,
+  "instructions_coverage": {
+    "total_instructions": 28,
+    "instructions_tested": 27,
+    "coverage_percentage": 96
+  },
+  "scenarios": [
+    {
+      "id": "scenario-0",
+      "capability": "Phase 1 Execution and NFR Capture",
+      "instructions_covered": [1, 2, 4, 5, 6, 7, 15, 16, 17]
+    },
+    {
+      "id": "scenario-1",
+      "capability": "Phase Boundary Enforcement",
+      "instructions_covered": [1, 2, 3, 15, 16, 17, 18]
+    },
+    {
+      "id": "scenario-2",
+      "capability": "Anti-Pattern Detection",
+      "instructions_covered": [24, 25, 26, 27, 28]
+    },
+    {
+      "id": "scenario-3",
+      "capability": "Phase 2 Methodology Proposal",
+      "instructions_covered": [1, 8, 9, 10, 11, 19, 20, 21]
+    },
+    {
+      "id": "scenario-4",
+      "capability": "Phase 3 Sequential Component Design",
+      "instructions_covered": [1, 12, 13, 22, 23]
+    }
+  ],
+  "reason_distribution": {
+    "reminder": 11,
+    "new knowledge": 7,
+    "preference": 10
+  },
+  "uncovered_instructions": [
+    {
+      "id": 14,
+      "instruction": "During Phase 4, validate the solution document against Phase 1 requirements before producing deliverables.",
+      "reason": "Moved to infeasible — requires completing all prior phases as precondition; not achievable in a single self-contained scenario."
+    }
+  ]
+}

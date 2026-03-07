@@ -1,0 +1,9 @@
+{
+  "total_infeasible": 1,
+  "infeasible_scenarios": [
+    {
+      "scenario": "Phase 4 Finalization Validation",
+      "reasoning": "Testing Phase 4 (validating the solution document against Phase 1 requirements and producing the final architecture deliverable) requires the agent to have completed and accepted all of Phases 1, 2, and 3 as prior state. Providing synthetic accepted outputs for every prior phase would make the scenario unrealistically large and would pre-bake the artifacts the agent is supposed to produce, removing meaningful discriminating signal. This capability cannot be evaluated in a self-contained one-shot scenario within the eval sandbox constraints."
+    }
+  ]
+}
