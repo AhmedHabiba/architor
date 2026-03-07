@@ -1,0 +1,184 @@
+{
+  "instructions": [
+    {
+      "instruction": "Follow the 5-step decision workflow in order: (1) assess team size and composition, (2) evaluate operational capacity, (3) match requirements to patterns, (4) check red flags, (5) present trade-offs with recommendation.",
+      "original_snippets": "When asked to recommend an architecture, follow these steps in order:\n1. Assess team size and composition...\n2. Evaluate operational capacity...\n3. Match requirements to patterns...\n4. Check red flags...\n5. Present trade-offs with recommendation",
+      "relevant_when": "Any time the agent is asked to recommend or evaluate an architecture pattern.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Apply Team Fit criteria to narrow viable patterns before applying other criteria.",
+      "original_snippets": "1. Assess team size and composition — Apply Team Fit criteria below to narrow viable patterns",
+      "relevant_when": "When recommending an architecture given a described team.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "If team size is fewer than 5, strongly favor monolith or modular monolith.",
+      "original_snippets": "Team size < 5 → Strongly favor monolith or modular monolith",
+      "relevant_when": "When the team described has fewer than 5 engineers.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "If team size is 5–15, favor modular monolith or bounded microservices.",
+      "original_snippets": "Team size 5-15 → Modular monolith or bounded microservices",
+      "relevant_when": "When the team has between 5 and 15 engineers.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "If team size is 15 or more, microservices are viable if the organization supports them.",
+      "original_snippets": "Team size 15+ → Microservices viable if org supports it",
+      "relevant_when": "When the team has 15 or more engineers.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "If there is no dedicated DevOps or Platform team, avoid Kubernetes-heavy architectures.",
+      "original_snippets": "No DevOps/Platform team → Avoid Kubernetes-heavy architectures",
+      "relevant_when": "When the team description mentions no DevOps engineer or platform team.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "If the team is junior-heavy, favor simpler patterns with clear boundaries.",
+      "original_snippets": "Junior-heavy team → Favor simpler patterns with clear boundaries",
+      "relevant_when": "When the team is described as predominantly junior or inexperienced.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Apply Operational Reality criteria to eliminate patterns the team cannot sustain.",
+      "original_snippets": "2. Evaluate operational capacity — Apply Operational Reality criteria to eliminate patterns the team cannot sustain",
+      "relevant_when": "When the team's operational constraints (DevOps headcount, DBA availability, monitoring maturity) are described.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "If the team has only 1 DevOps engineer, do not recommend more than 3 independently deployed services.",
+      "original_snippets": "1 DevOps engineer → Cannot sustain >3 independently deployed services",
+      "relevant_when": "When the team has exactly 1 DevOps engineer.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "If there is no dedicated DBA, avoid polyglot persistence (multiple different database technologies).",
+      "original_snippets": "No dedicated DBA → Avoid polyglot persistence",
+      "relevant_when": "When the team has no database administrator.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "If the team has limited monitoring experience, recommend starting with a monolith plus good observability.",
+      "original_snippets": "Limited monitoring experience → Start with monolith + good observability",
+      "relevant_when": "When the team is described as having limited or immature monitoring capabilities.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "If the workload is budget-constrained, favor serverless for spiky loads and monolith for steady workloads.",
+      "original_snippets": "Budget constrained → Serverless for spiky loads, monolith for steady",
+      "relevant_when": "When budget constraints are mentioned alongside workload characteristics.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Apply Requirement Signals to identify the best-fit pattern after applying team and operational filters.",
+      "original_snippets": "3. Match requirements to patterns — Apply Requirement Signals to identify the best fit",
+      "relevant_when": "After team and operational filters have been applied, when the system's functional and non-functional requirements are being evaluated.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "If independent scaling is needed, recommend microservices or serverless.",
+      "original_snippets": "Independent scaling needs → Microservices or serverless",
+      "relevant_when": "When the described system has components with clearly different scaling requirements.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "If strong consistency is required, recommend monolith or synchronous microservices.",
+      "original_snippets": "Strong consistency requirements → Monolith or synchronous microservices",
+      "relevant_when": "When the system requires ACID-style consistency or cannot tolerate eventual consistency.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "If the domain is event-heavy, recommend event-driven architecture.",
+      "original_snippets": "Event-heavy domain → Event-driven architecture",
+      "relevant_when": "When the system description involves many asynchronous events, notifications, or workflows.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "If there is significant read/write asymmetry, recommend CQRS.",
+      "original_snippets": "Read/write asymmetry → CQRS",
+      "relevant_when": "When the system has a much higher read volume than write volume, or needs different read/write models.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "If rapid experimentation is the primary need, recommend modular monolith as the fastest pattern to change.",
+      "original_snippets": "Rapid experimentation needed → Modular monolith (fastest to change)",
+      "relevant_when": "When the team needs to iterate quickly on features without being locked into service boundaries.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "If regulatory isolation is required, recommend a service per compliance boundary.",
+      "original_snippets": "Regulatory isolation → Service per compliance boundary",
+      "relevant_when": "When parts of the system must be isolated for compliance reasons (e.g. PCI DSS, HIPAA, SOC 2).",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Check the Red Flags section against the proposed or considered architecture combination.",
+      "original_snippets": "4. Check red flags — Validate the proposed combination against the Red Flags section",
+      "relevant_when": "After a pattern is selected or proposed, to ensure no known anti-combinations are being recommended.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Flag microservices that share a single database as a 'distributed monolith'.",
+      "original_snippets": "Microservices with shared database → \"You have a distributed monolith\"",
+      "relevant_when": "When a proposed microservices architecture uses a shared or common database across services.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Flag event sourcing without replay testing as a data loss risk.",
+      "original_snippets": "Event sourcing without replay testing → \"You'll lose data\"",
+      "relevant_when": "When event sourcing is proposed or selected without mention of event replay testing or disaster recovery.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Flag serverless with persistent connections as the wrong pattern for the workload.",
+      "original_snippets": "Serverless with persistent connections → \"Wrong pattern for this workload\"",
+      "relevant_when": "When serverless is proposed for workloads that require long-lived or persistent connections (e.g. WebSockets, database connections).",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Flag CQRS applied to simple CRUD operations as over-engineered.",
+      "original_snippets": "CQRS for simple CRUD → \"Over-engineered\"",
+      "relevant_when": "When CQRS is proposed for a straightforward create/read/update/delete system without genuine read/write asymmetry.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Flag a monolith with 50 or more developers as heading toward a deployment bottleneck.",
+      "original_snippets": "Monolith with 50+ developers → \"Deployment bottleneck incoming\"",
+      "relevant_when": "When a monolith is proposed or being used by a very large team.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Present the final recommendation using the required output structure: named pattern, why it fits, top risks, migration trigger.",
+      "original_snippets": "5. Present trade-offs with recommendation — Name the recommended pattern, explain why it fits, state the top risks, and note when to revisit the decision",
+      "relevant_when": "When producing the final architecture recommendation output.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Name the recommended pattern explicitly in the recommendation output.",
+      "original_snippets": "**Recommended:** Modular Monolith",
+      "relevant_when": "When writing the recommendation — the pattern name must be stated, not just implied.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Explain why the recommended pattern fits the specific team, operational, and requirement context.",
+      "original_snippets": "**Why it fits:** Team of 6 with no dedicated DevOps rules out independent deployments.",
+      "relevant_when": "When writing the recommendation — the explanation must reference the specific context provided, not just generic pattern properties.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "State the top risks of the recommended pattern in the recommendation output.",
+      "original_snippets": "**Top risks:** Module coupling creep over time; single deployment unit limits targeted scaling.",
+      "relevant_when": "When writing the recommendation — risks must be stated even for the recommended pattern.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "State a migration trigger — the specific condition that should prompt the team to revisit or evolve the architecture.",
+      "original_snippets": "**Migration trigger:** Extract a module to a service when it requires independent scaling or a separate release cadence, or when a dedicated team owns it.",
+      "relevant_when": "When writing the recommendation — a concrete, actionable trigger must be provided.",
+      "why_given": "new knowledge"
+    }
+  ]
+}

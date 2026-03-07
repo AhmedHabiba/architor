@@ -1,0 +1,31 @@
+{
+  "context": "Tests whether the agent identifies and flags all known red-flag anti-patterns in a proposed architecture: microservices sharing a database, event sourcing without replay testing, serverless with persistent connections, and CQRS applied to a simple CRUD service.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Distributed monolith flag",
+      "description": "review.md flags the microservices-with-shared-database combination as a distributed monolith, or uses equivalent language indicating the services are not truly independent",
+      "max_score": 25
+    },
+    {
+      "name": "Event sourcing data loss flag",
+      "description": "review.md flags event sourcing without replay testing as a data loss risk",
+      "max_score": 20
+    },
+    {
+      "name": "Serverless wrong pattern flag",
+      "description": "review.md flags the use of serverless functions for the persistent WebSocket connection as an inappropriate pattern choice for that workload",
+      "max_score": 20
+    },
+    {
+      "name": "CQRS over-engineering flag",
+      "description": "review.md flags CQRS on the simple CRUD user management service as over-engineered",
+      "max_score": 20
+    },
+    {
+      "name": "Does not approve uncritically",
+      "description": "review.md does NOT endorse or validate the proposed architecture without raising the above concerns",
+      "max_score": 15
+    }
+  ]
+}
