@@ -1,0 +1,40 @@
+{
+  "total_scenarios": 5,
+  "instructions_coverage": {
+    "total_instructions": 22,
+    "instructions_tested": 22,
+    "coverage_percentage": 100
+  },
+  "scenarios": [
+    {
+      "id": "scenario-0",
+      "capability": "Valid Phase Transition and Decision Logging",
+      "instructions_covered": [1, 2, 6, 12, 17, 18, 19, 20, 21, 22]
+    },
+    {
+      "id": "scenario-1",
+      "capability": "Invalid Backward Transition Rejection",
+      "instructions_covered": [1, 2, 5, 7, 13, 14, 15, 16]
+    },
+    {
+      "id": "scenario-2",
+      "capability": "Phase 2 Sub-Phase Ordering Enforcement",
+      "instructions_covered": [1, 2, 3, 8, 9]
+    },
+    {
+      "id": "scenario-3",
+      "capability": "Component Reopen Status Lifecycle",
+      "instructions_covered": [1, 2, 4, 10, 11, 12, 17, 18, 19, 21, 22]
+    },
+    {
+      "id": "scenario-4",
+      "capability": "Decision Log Append-Only Format",
+      "instructions_covered": [17, 18, 19, 20, 22]
+    }
+  ],
+  "reason_distribution": {
+    "reminder": 4,
+    "new knowledge": 16,
+    "preference": 2
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "context": "Tests whether the agent correctly transitions a reopened component from `needs-review` to `in_progress` when design work resumes, updates state.json with the new status and incremented decision_count, and logs the event to decisions.md.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Component status updated to in_progress",
+      "description": "Output .arch/state.json has the Order Service component status changed to `\"in_progress\"` (from `\"needs-review\"`)",
+      "max_score": 30
+    },
+    {
+      "name": "Other components unchanged",
+      "description": "Output .arch/state.json leaves API Gateway (accepted) and Payment Service (pending) statuses unchanged",
+      "max_score": 15
+    },
+    {
+      "name": "decision_count incremented",
+      "description": "Output .arch/state.json has `decision_count` greater than the input value of 14",
+      "max_score": 15
+    },
+    {
+      "name": "Decision entry logged",
+      "description": ".arch/decisions.md contains a new entry recording the resumption or state change for the Order Service component",
+      "max_score": 20
+    },
+    {
+      "name": "Date field present",
+      "description": "The new decision entry in .arch/decisions.md contains a Date field",
+      "max_score": 10
+    },
+    {
+      "name": "Valid category used",
+      "description": "The new decision entry uses one of the defined categories (e.g. Reopen, Process, or Technology)",
+      "max_score": 10
+    }
+  ]
+}
