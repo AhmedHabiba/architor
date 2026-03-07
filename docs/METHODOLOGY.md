@@ -62,14 +62,11 @@ If you skip the interview, the agent documents explicit assumptions marked `[ASS
 
 Phase 2 is split into three independently-accepted sub-phases. Each builds on the previous one and must be accepted before the next begins.
 
-```
-Phase 2A: Architecture Pattern
-    ↓ /accept
-Phase 2B: Component Map
-    ↓ /accept
-Phase 2C: Cross-Cutting Decisions
-    ↓ /accept
-Phase 3: Design Components
+```mermaid
+flowchart TD
+    P2A["Phase 2A: Architecture Pattern"] -->|"/accept"| P2B["Phase 2B: Component Map"]
+    P2B -->|"/accept"| P2C["Phase 2C: Cross-Cutting Decisions"]
+    P2C -->|"/accept"| P3["Phase 3: Design Components"]
 ```
 
 **Command**: `/propose-methodology` (auto-routes to the correct sub-phase)
@@ -171,10 +168,15 @@ This is the critical sub-phase that prevents inconsistency in Phase 3. Cross-cut
 **Gate**: ALL components accepted → proceed to Phase 4
 
 **Component lifecycle**:
-```
-pending → in_progress → awaiting_acceptance → accepted (locked)
-                ↑              ↓
-                └── /refine ───┘
+
+```mermaid
+stateDiagram-v2
+    [*] --> pending
+    pending --> in_progress
+    in_progress --> awaiting_acceptance
+    awaiting_acceptance --> in_progress : /refine
+    awaiting_acceptance --> accepted
+    accepted --> [*]
 ```
 
 After accepting a component, the agent automatically advances to the next pending component. Only one component is active at a time.
@@ -259,12 +261,17 @@ Reopening an earlier phase affects all downstream decisions:
 Components marked `needs-review` must go through `in_progress → awaiting_acceptance → accepted` again. They cannot be directly re-accepted.
 
 ### Updated Component Lifecycle (with reopen)
-```
-pending → in_progress → awaiting_acceptance → accepted
-                ↑              ↓                  │
-                └── /refine ───┘                  │
-                ↑                                 │
-                └──── needs-review ←── /reopen ───┘
+
+```mermaid
+stateDiagram-v2
+    [*] --> pending
+    pending --> in_progress
+    in_progress --> awaiting_acceptance
+    awaiting_acceptance --> in_progress : /refine
+    awaiting_acceptance --> accepted
+    accepted --> needs_review : /reopen
+    needs_review --> in_progress
+    accepted --> [*]
 ```
 
 ## Decision Log

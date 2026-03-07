@@ -8,7 +8,39 @@ The system enforces a four-phase methodology that takes a Product Requirements D
 
 ## System Architecture
 
-![System Architecture](diagrams/system-architecture.svg)
+```mermaid
+flowchart TB
+    subgraph L1["Layer 1: CLAUDE.md (Soft)"]
+        ID["Identity & Phase Rules"]
+    end
+
+    subgraph L2["Layer 2: Skills (Medium)"]
+        S1["architecture-methodology"]
+        S2["architecture-patterns"]
+        S3["challenge-assumptions"]
+        S4["state-manager"]
+    end
+
+    subgraph L3["Layer 3: Slash Commands (Medium)"]
+        C1["/analyze-prd"]
+        C2["/propose-methodology"]
+        C3["/design-component"]
+        C4["/accept, /refine, /alternative"]
+    end
+
+    subgraph L4["Layer 4: Hooks + Python (Hard)"]
+        V["validate-transition.py"]
+        LOG["log-decision.py"]
+    end
+
+    subgraph L5["Layer 5: File State (.arch/)"]
+        ST["state.json"]
+        DEC["decisions.md"]
+        COMP["components/*.md"]
+    end
+
+    L1 --> L2 --> L3 --> L4 --> L5
+```
 
 The system is composed of five distinct layers, each with a different enforcement strength. This layered approach is deliberate — it addresses a fundamental problem with LLM-based tools: behavioral drift over long conversations.
 
@@ -97,7 +129,16 @@ All state lives on disk in the `.arch/` directory:
 
 ## Enforcement Model
 
-![Enforcement Model](diagrams/enforcement-model.svg)
+```mermaid
+flowchart TD
+    A["Claude attempts state change"] --> B{"CLAUDE.md\n(soft rules)"}
+    B -->|"follows rules"| C{"Skills\n(medium enforcement)"}
+    B -->|"drifts"| C
+    C --> D{"Slash Command\n(validates prereqs)"}
+    D --> E{"Python Hook\n(hard enforcement)"}
+    E -->|"PASS"| F["State written to disk"]
+    E -->|"BLOCK\n(exit code 1)"| G["Error returned to Claude"]
+```
 
 The layered enforcement model addresses a fundamental challenge: LLM behavior is probabilistic, but architecture review requires deterministic gates. The solution is defense in depth:
 
@@ -111,7 +152,19 @@ If the soft layers drift (which they will over long conversations), the hard lay
 
 ## Phase Workflow
 
-![Phase Workflow](diagrams/phase-workflow.svg)
+```mermaid
+flowchart TD
+    NS["not_started"] --> P1["Phase 1: Evaluate"]
+    P1 -->|"/accept"| P2A["Phase 2A: Pattern"]
+    P2A -->|"/accept"| P2B["Phase 2B: Components"]
+    P2B -->|"/accept"| P2C["Phase 2C: Cross-Cutting"]
+    P2C -->|"/accept"| P3["Phase 3: Design\n(one component at a time)"]
+    P3 -->|"all accepted"| P4["Phase 4: Document"]
+    P4 -->|"/accept"| DONE["Complete"]
+
+    P3 -.->|"/reopen\n(max 2)"| P2A
+    P3 -.->|"/reopen"| P2C
+```
 
 ### Phase Sequence
 
@@ -158,16 +211,18 @@ Refinement loops are unlimited — the user can iterate as many times as needed 
 
 ## Component Lifecycle
 
-![Component Lifecycle](diagrams/component-lifecycle.svg)
-
 During Phase 3, each component follows a strict state machine:
 
-```
-pending → in_progress → awaiting_acceptance → accepted (locked)
-                ↑              ↓                  │
-                └── /refine ───┘                  │
-                ↑                                 │
-                └──── needs-review ←── /reopen ───┘
+```mermaid
+stateDiagram-v2
+    [*] --> pending
+    pending --> in_progress
+    in_progress --> awaiting_acceptance
+    awaiting_acceptance --> in_progress : /refine
+    awaiting_acceptance --> accepted
+    accepted --> needs_review : /reopen
+    needs_review --> in_progress
+    accepted --> [*]
 ```
 
 Key constraints enforced by validate-transition.py:
