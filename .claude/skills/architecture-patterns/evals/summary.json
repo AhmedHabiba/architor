@@ -1,0 +1,40 @@
+{
+  "total_scenarios": 5,
+  "instructions_coverage": {
+    "total_instructions": 30,
+    "instructions_tested": 30,
+    "coverage_percentage": 100
+  },
+  "scenarios": [
+    {
+      "id": "scenario-0",
+      "capability": "Team Fit Criteria Application",
+      "instructions_covered": [2, 3, 4, 5, 6, 7]
+    },
+    {
+      "id": "scenario-1",
+      "capability": "Operational Reality Constraint Elimination",
+      "instructions_covered": [8, 9, 10, 11, 12]
+    },
+    {
+      "id": "scenario-2",
+      "capability": "Requirement Signal Pattern Matching",
+      "instructions_covered": [13, 14, 15, 16, 17, 18, 19]
+    },
+    {
+      "id": "scenario-3",
+      "capability": "Red Flag Detection",
+      "instructions_covered": [20, 21, 22, 23, 24, 25]
+    },
+    {
+      "id": "scenario-4",
+      "capability": "Full Workflow and Recommendation Output Format",
+      "instructions_covered": [1, 26, 27, 28, 29, 30]
+    }
+  ],
+  "reason_distribution": {
+    "reminder": 10,
+    "new knowledge": 13,
+    "preference": 7
+  }
+}

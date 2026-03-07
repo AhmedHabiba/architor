@@ -1,0 +1,46 @@
+{
+  "context": "Tests whether the agent applies Operational Reality criteria to eliminate architectures the team cannot sustain — specifically: not exceeding 3 deployed services with 1 DevOps, avoiding polyglot persistence without a DBA, favouring observability-first designs with limited monitoring maturity, and considering serverless for the spiky workload given budget constraints.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Max 3 independent services",
+      "description": "recommendation.md does NOT recommend more than 3 independently deployed services",
+      "max_score": 20
+    },
+    {
+      "name": "No polyglot persistence",
+      "description": "recommendation.md does NOT recommend using multiple different database technologies (polyglot persistence)",
+      "max_score": 15
+    },
+    {
+      "name": "Single DevOps constraint cited",
+      "description": "recommendation.md explicitly references the single DevOps engineer as a constraint limiting the number of independently deployed services",
+      "max_score": 12
+    },
+    {
+      "name": "No DBA constraint cited",
+      "description": "recommendation.md explicitly references the lack of a DBA as a reason to avoid polyglot persistence or complex database configurations",
+      "max_score": 10
+    },
+    {
+      "name": "Monitoring maturity cited",
+      "description": "recommendation.md references the team's limited monitoring experience as a factor in the architecture decision",
+      "max_score": 10
+    },
+    {
+      "name": "Observability emphasis",
+      "description": "recommendation.md recommends investing in monitoring, observability, or structured logging as part of the solution",
+      "max_score": 10
+    },
+    {
+      "name": "Serverless for spiky load",
+      "description": "recommendation.md considers or recommends serverless for the spiky IoT ingestion workload, or explains why it was ruled out",
+      "max_score": 13
+    },
+    {
+      "name": "Budget constraint cited",
+      "description": "recommendation.md references the budget cap as a factor influencing the architecture decision",
+      "max_score": 10
+    }
+  ]
+}
