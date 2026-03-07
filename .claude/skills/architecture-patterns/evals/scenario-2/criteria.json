@@ -1,0 +1,51 @@
+{
+  "context": "Tests whether the agent correctly maps system requirement signals to appropriate patterns: CQRS for read/write asymmetry, monolith or synchronous services for strong consistency, event-driven for an event-heavy notification system, and service-per-compliance-boundary for PCI DSS isolation.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "CQRS for read/write asymmetry",
+      "description": "recommendation.md identifies CQRS as appropriate for the high read-to-write ratio, or explicitly maps read/write asymmetry to CQRS consideration",
+      "max_score": 15
+    },
+    {
+      "name": "Strong consistency solution",
+      "description": "recommendation.md recommends a monolith or synchronous service approach for the grade submission subsystem that requires strong consistency",
+      "max_score": 12
+    },
+    {
+      "name": "Event-driven for notifications",
+      "description": "recommendation.md identifies event-driven architecture as appropriate for the notification and course-event subsystem",
+      "max_score": 12
+    },
+    {
+      "name": "Regulatory service isolation",
+      "description": "recommendation.md recommends isolating the payment component as a separate service boundary to satisfy PCI DSS compliance requirements",
+      "max_score": 15
+    },
+    {
+      "name": "Read/write asymmetry cited",
+      "description": "recommendation.md explicitly cites the read-to-write ratio or read/write asymmetry as the signal driving the CQRS or read-model recommendation",
+      "max_score": 10
+    },
+    {
+      "name": "Consistency requirement cited",
+      "description": "recommendation.md explicitly cites the strong consistency requirement for grades as a reason to avoid eventual-consistency patterns for that subsystem",
+      "max_score": 10
+    },
+    {
+      "name": "Compliance requirement cited",
+      "description": "recommendation.md explicitly cites PCI DSS or regulatory isolation as the reason for the service boundary around payments",
+      "max_score": 10
+    },
+    {
+      "name": "No CQRS for simple subsystems",
+      "description": "recommendation.md does NOT recommend CQRS for the simpler, consistency-focused subsystems (e.g. grade submission) that do not have read/write asymmetry",
+      "max_score": 8
+    },
+    {
+      "name": "Requirement signals are the basis",
+      "description": "recommendation.md anchors each pattern choice to a specific requirement signal rather than general preference",
+      "max_score": 8
+    }
+  ]
+}

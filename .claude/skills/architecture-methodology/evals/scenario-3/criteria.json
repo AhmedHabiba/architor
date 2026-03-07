@@ -1,0 +1,56 @@
+{
+  "context": "Tests whether the agent produces a complete Phase 2 methodology document with a justified architecture pattern, high-level component list, and technology stack with rationale — and correctly marks methodology_accepted in state.json — while avoiding component implementation details, API contracts, and detailed tech configurations.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Pattern chosen",
+      "description": "phase2-methodology.md names a specific architecture pattern (e.g. modular monolith, microservices, event-driven)",
+      "max_score": 8
+    },
+    {
+      "name": "Pattern justified",
+      "description": "phase2-methodology.md provides a rationale for why the chosen pattern fits the requirements, constraints, or team context",
+      "max_score": 10
+    },
+    {
+      "name": "Component list defined",
+      "description": "phase2-methodology.md includes a list of high-level components or modules (at least 3)",
+      "max_score": 10
+    },
+    {
+      "name": "Technology stack specified",
+      "description": "phase2-methodology.md names specific technologies for at least two distinct concerns (e.g. language, database, infrastructure)",
+      "max_score": 8
+    },
+    {
+      "name": "Technology rationale provided",
+      "description": "phase2-methodology.md explains the rationale for each or most technology choices — not just a list",
+      "max_score": 10
+    },
+    {
+      "name": "methodology_accepted set true",
+      "description": "The output .arch/state.json has `methodology_accepted` set to `true`",
+      "max_score": 15
+    },
+    {
+      "name": "No component API contracts",
+      "description": "phase2-methodology.md does NOT include specific API endpoint definitions, request/response schemas, or data models for individual components",
+      "max_score": 10
+    },
+    {
+      "name": "No detailed tech config",
+      "description": "phase2-methodology.md does NOT include detailed technology configurations (e.g. specific database index settings, Kubernetes manifests, environment variable lists)",
+      "max_score": 10
+    },
+    {
+      "name": "Linked to Phase 1 requirements",
+      "description": "phase2-methodology.md references at least one constraint, NFR, or requirement from Phase 1 when justifying the pattern or technology choices",
+      "max_score": 10
+    },
+    {
+      "name": "State phase updated",
+      "description": "The output .arch/state.json reflects Phase 2 (methodology) as accepted or completed — either via `methodology_accepted: true` or a status field update",
+      "max_score": 9
+    }
+  ]
+}

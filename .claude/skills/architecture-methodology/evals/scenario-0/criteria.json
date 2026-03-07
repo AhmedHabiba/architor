@@ -1,0 +1,56 @@
+{
+  "context": "Tests whether the agent correctly executes Phase 1 by extracting functional requirements, all four NFR categories, constraints, and risks from a PRD — and correctly updates state.json to mark requirements as accepted while avoiding premature technology or design decisions.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Functional requirements",
+      "description": "phase1-evaluation.md contains a section documenting functional requirements extracted from the PRD",
+      "max_score": 10
+    },
+    {
+      "name": "Availability NFR",
+      "description": "phase1-evaluation.md explicitly captures an availability or uptime non-functional requirement",
+      "max_score": 10
+    },
+    {
+      "name": "Security NFR",
+      "description": "phase1-evaluation.md explicitly captures a security non-functional requirement",
+      "max_score": 8
+    },
+    {
+      "name": "Cost NFR",
+      "description": "phase1-evaluation.md explicitly captures a cost or budget non-functional requirement",
+      "max_score": 8
+    },
+    {
+      "name": "Monitoring NFR",
+      "description": "phase1-evaluation.md explicitly captures a monitoring or observability non-functional requirement",
+      "max_score": 8
+    },
+    {
+      "name": "Constraints identified",
+      "description": "phase1-evaluation.md contains a section or list of project or technical constraints",
+      "max_score": 8
+    },
+    {
+      "name": "Risks identified",
+      "description": "phase1-evaluation.md contains a section or list of identified risks",
+      "max_score": 8
+    },
+    {
+      "name": "requirements_accepted set true",
+      "description": "The output .arch/state.json has `requirements_accepted` set to `true`",
+      "max_score": 15
+    },
+    {
+      "name": "No technology recommendations",
+      "description": "phase1-evaluation.md does NOT recommend or name specific technologies, frameworks, or databases",
+      "max_score": 13
+    },
+    {
+      "name": "No component design details",
+      "description": "phase1-evaluation.md does NOT describe component structures, API shapes, or architecture patterns",
+      "max_score": 12
+    }
+  ]
+}

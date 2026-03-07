@@ -1,0 +1,136 @@
+{
+  "instructions": [
+    {
+      "instruction": "Read `.arch/state.json` before responding to architecture queries and before any state update.",
+      "original_snippets": "Read it before responding to architecture queries and update it after state changes.",
+      "relevant_when": "Any time the agent handles an architecture action or status request.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Parse `current_phase` from state.json to determine where the project is.",
+      "original_snippets": "Parse the JSON file\n- Check `current_phase` to know where we are",
+      "relevant_when": "When reading state to determine the appropriate action.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "For Phase 2 (methodology), check `sub_phase` and the individual acceptance flags: `pattern_accepted`, `components_overview_accepted`, `cross_cutting_accepted`.",
+      "original_snippets": "For Phase 2, check `sub_phase` and individual acceptance flags (pattern_accepted, components_overview_accepted, cross_cutting_accepted)",
+      "relevant_when": "When determining the current position within Phase 2.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "For Phase 3 (components), check the `components` object for per-component status.",
+      "original_snippets": "For Phase 3, check `components` object for per-component status",
+      "relevant_when": "When determining which component is active or next in Phase 3.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Check `reopens.count` and `reopens.max` to determine whether reopens are still available.",
+      "original_snippets": "Check `reopens.count` and `reopens.max` for reopen availability",
+      "relevant_when": "When a backward transition or reopen is requested.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Only allow these forward phase transitions: not_started→evaluation, evaluation→methodology, methodology→components, components→finalization.",
+      "original_snippets": "not_started → evaluation     (when /analyze-prd runs)\nevaluation → methodology     (when Phase 1 is accepted)\nmethodology → components     (when Phase 2 is fully accepted: pattern + components + cross-cutting)\ncomponents → finalization    (when ALL components accepted)",
+      "relevant_when": "When a phase transition is requested.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Backward phase transitions are only allowed via /reopen, subject to reopens.count being less than reopens.max.",
+      "original_snippets": "Backward transitions are only allowed via /reopen (max 2 per project).",
+      "relevant_when": "When a user wants to revert to a previous phase.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Phase 2 has three sub-phases that must be accepted in order: pattern → components_overview → cross_cutting.",
+      "original_snippets": "Phase 2 Sub-Phases\npattern → components_overview → cross_cutting\nEach sub-phase is accepted independently via /accept.",
+      "relevant_when": "When a user tries to advance within Phase 2.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "All three Phase 2 sub-phases (pattern, components_overview, cross_cutting) must be accepted before Phase 2 is complete.",
+      "original_snippets": "All three must be accepted for Phase 2 to be complete.",
+      "relevant_when": "When evaluating whether Phase 2 can transition to Phase 3.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Component status follows this lifecycle: pending → in_progress → awaiting_acceptance → accepted (or back to in_progress for refinement).",
+      "original_snippets": "pending → in_progress        (when /design-component starts)\nin_progress → awaiting_acceptance  (when design is presented)\nawaiting_acceptance → accepted     (when user accepts)\nawaiting_acceptance → in_progress  (when user refines)",
+      "relevant_when": "When updating a component's status during Phase 3.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "After a reopen cascades to a component, transition the component from `needs-review` to `in_progress` when design work resumes.",
+      "original_snippets": "needs-review → in_progress         (after a reopen cascades)",
+      "relevant_when": "When a reopened component is being worked on again.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "When updating state: (1) read current state, (2) validate the transition is legal, (3) write the updated state, (4) increment `decision_count` if a decision was made.",
+      "original_snippets": "When updating state.json:\n1. Read current state\n2. Validate the transition is legal\n3. Write the updated state\n4. Increment `decision_count` if a decision was made",
+      "relevant_when": "Any time state.json is being updated.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "If a transition is invalid, do NOT write any changes to state.json.",
+      "original_snippets": "If new_phase not in allowed:\n    # Invalid transition: do NOT write state.\n    # Report the error to the user and stop.",
+      "relevant_when": "When the requested phase transition is not in the list of allowed transitions.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Inform the user of the current phase and valid next transitions when validation fails.",
+      "original_snippets": "Inform the user of the current phase and the valid next transitions.",
+      "relevant_when": "After rejecting an invalid transition attempt.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "If a backward transition is needed, direct the user to use `/reopen` (subject to reopens.count < reopens.max).",
+      "original_snippets": "If a backward transition is needed, direct the user to use `/reopen` (subject to `reopens.count < reopens.max`).",
+      "relevant_when": "When the user attempts to move backward to a prior phase without using /reopen.",
+      "why_given": "preference"
+    },
+    {
+      "instruction": "Log a warning entry in `decisions.md` under category `Process` if an invalid transition attempt was user-initiated.",
+      "original_snippets": "Log a warning entry in `decisions.md` under category `Process` if the invalid attempt was user-initiated.",
+      "relevant_when": "After rejecting an invalid transition that was explicitly requested by the user.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "`decisions.md` is append-only — never edit or delete previous entries.",
+      "original_snippets": "Append-only file. Never edit previous entries.",
+      "relevant_when": "Any time a new decision is being logged in decisions.md.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use the `### [DEC-NNN] Phase X | Category` format for decision log entries, numbering sequentially.",
+      "original_snippets": "### [DEC-NNN] Phase X | Category",
+      "relevant_when": "When appending any new decision entry to decisions.md.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Each decision entry must include all six fields: Decision, Rationale, Alternatives, Trade-offs, Risk, Date.",
+      "original_snippets": "- **Decision:** [What was decided]\n- **Rationale:** [Why this choice]\n- **Alternatives:** [What else was considered]\n- **Trade-offs:** [What was sacrificed]\n- **Risk:** [Any residual risk]\n- **Date:** [ISO timestamp]",
+      "relevant_when": "When writing a decision entry to decisions.md.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Use one of the defined categories for decision entries: Requirements, Pattern, Technology, Integration, Security, Infrastructure, Process, Reopen.",
+      "original_snippets": "Categories: Requirements | Pattern | Technology | Integration | Security | Infrastructure | Process | Reopen",
+      "relevant_when": "When choosing the category for a decision log entry.",
+      "why_given": "new knowledge"
+    },
+    {
+      "instruction": "Increment `decision_count` in state.json when a decision is logged.",
+      "original_snippets": "state[\"decision_count\"] += 1",
+      "relevant_when": "When a new decision entry is appended to decisions.md.",
+      "why_given": "reminder"
+    },
+    {
+      "instruction": "Automatically log a decision entry for: phase acceptance, phase transition, sub-phase acceptance (2A, 2B, 2C), technology selection per component, refinement requests, alternative requests, review findings, and reopen operations.",
+      "original_snippets": "Log a decision entry for:\n- Phase acceptance\n- Phase transition\n- Sub-phase acceptance (2A, 2B, 2C)\n- Technology selection (per component)\n- Refinement requests (what changed and why)\n- Alternative requests (what was replaced)\n- Review findings (significant concerns raised)\n- Reopen operations (with cascade details)",
+      "relevant_when": "After any of these events occur during the architecture process.",
+      "why_given": "new knowledge"
+    }
+  ]
+}

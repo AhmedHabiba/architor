@@ -1,13 +1,13 @@
 ---
 name: state-manager
-description: Manages architecture project state in .arch/state.json and .arch/decisions.md. Activates when reading or updating project phase state, tracking component acceptance, logging decisions, or validating phase transitions.
+description: Manages architecture project state in .arch/state.json and .arch/decisions.md. Use when reading or updating project phase state, checking architecture status or project progress, asking "what phase are we in", tracking component acceptance, recording or logging decisions, or validating phase transitions.
 ---
 
 # State Manager
 
 ## State File: `.arch/state.json`
 
-This file is the single source of truth for project progress. ALWAYS read it before responding to architecture queries. ALWAYS update it after state changes.
+This file is the single source of truth for project progress. Read it before responding to architecture queries and update it after state changes.
 
 ### Reading State
 - Parse the JSON file
@@ -17,6 +17,13 @@ This file is the single source of truth for project progress. ALWAYS read it bef
 - For Phase 3, check `components` object for per-component status
 - Check `reopens.count` and `reopens.max` for reopen availability
 
+**Example – read state:**
+```python
+import json, pathlib
+state = json.loads(pathlib.Path(".arch/state.json").read_text())
+print(state["current_phase"])
+```
+
 ### Valid Phase Transitions
 ```
 not_started → evaluation     (when /analyze-prd runs)
@@ -25,7 +32,7 @@ methodology → components     (when Phase 2 is fully accepted: pattern + compon
 components → finalization    (when ALL components accepted)
 ```
 
-Backward transitions are ONLY allowed via /reopen (max 2 per project).
+Backward transitions are only allowed via /reopen (max 2 per project).
 
 ### Phase 2 Sub-Phases
 ```
@@ -49,6 +56,43 @@ When updating state.json:
 3. Write the updated state
 4. Increment `decision_count` if a decision was made
 
+**Example – validate and write state:**
+```python
+import json, pathlib
+
+VALID_TRANSITIONS = {
+    "not_started": ["evaluation"],
+    "evaluation": ["methodology"],
+    "methodology": ["components"],
+    "components": ["finalization"],
+}
+
+def apply_transition(new_phase):
+    p = pathlib.Path(".arch/state.json")
+    state = json.loads(p.read_text())
+    current = state["current_phase"]
+    allowed = VALID_TRANSITIONS.get(current, [])
+
+    if new_phase not in allowed:
+        # Invalid transition: do NOT write state.
+        # Report the error to the user and stop.
+        raise ValueError(
+            f"Invalid transition: '{current}' → '{new_phase}'. "
+            f"Allowed next phases: {allowed or ['none (use /reopen for backward transitions)']}"
+        )
+
+    state["current_phase"] = new_phase
+    state["decision_count"] += 1
+    p.write_text(json.dumps(state, indent=2))
+    return state
+```
+
+**If validation fails:**
+- Do not write any changes to `state.json`.
+- Inform the user of the current phase and the valid next transitions.
+- If a backward transition is needed, direct the user to use `/reopen` (subject to `reopens.count < reopens.max`).
+- Log a warning entry in `decisions.md` under category `Process` if the invalid attempt was user-initiated.
+
 ## Decision Log: `.arch/decisions.md`
 
 Append-only file. Never edit previous entries. Format:
@@ -64,6 +108,21 @@ Append-only file. Never edit previous entries. Format:
 ```
 
 Categories: Requirements | Pattern | Technology | Integration | Security | Infrastructure | Process | Reopen
+
+**Example – append a decision entry:**
+```python
+import pathlib
+entry = """
+### [DEC-001] Phase 1 | Pattern
+- **Decision:** Adopt hexagonal architecture
+- **Rationale:** Decouples domain from infrastructure
+- **Alternatives:** Layered monolith
+- **Trade-offs:** Higher initial complexity
+- **Risk:** Team familiarity required
+- **Date:** 2024-06-01T10:00:00Z
+"""
+pathlib.Path(".arch/decisions.md").open("a").write(entry)
+```
 
 ### Automatic Logging Events
 Log a decision entry for:

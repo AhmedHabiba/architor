@@ -1,0 +1,46 @@
+{
+  "context": "Tests whether the agent correctly applies team size and composition criteria to a small startup team, strongly favoring simpler patterns and avoiding Kubernetes-heavy architectures when there is no DevOps engineer.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Recommends monolith or modular monolith",
+      "description": "recommendation.md recommends either a monolith or modular monolith as the primary pattern (not microservices or event-driven as the top choice)",
+      "max_score": 20
+    },
+    {
+      "name": "No microservices recommendation",
+      "description": "recommendation.md does NOT recommend microservices as the recommended or primary architecture for this team",
+      "max_score": 15
+    },
+    {
+      "name": "No Kubernetes recommendation",
+      "description": "recommendation.md does NOT recommend Kubernetes or Kubernetes-based infrastructure (e.g. EKS, GKE, AKS, Helm) as part of the solution",
+      "max_score": 15
+    },
+    {
+      "name": "Team size cited",
+      "description": "recommendation.md explicitly references the team size (4 engineers) as a factor in the pattern decision",
+      "max_score": 12
+    },
+    {
+      "name": "No DevOps cited",
+      "description": "recommendation.md explicitly references the absence of a DevOps or platform engineer as a constraint on the architecture choice",
+      "max_score": 12
+    },
+    {
+      "name": "Junior/mid experience cited",
+      "description": "recommendation.md references the team's experience level (junior-to-mid) as a reason to favor a simpler pattern with clearer boundaries",
+      "max_score": 10
+    },
+    {
+      "name": "Low operational complexity",
+      "description": "The recommended pattern is described as having low operational overhead or deployment complexity suitable for a small team",
+      "max_score": 8
+    },
+    {
+      "name": "Pattern risks stated",
+      "description": "recommendation.md states at least one risk or limitation of the recommended pattern",
+      "max_score": 8
+    }
+  ]
+}

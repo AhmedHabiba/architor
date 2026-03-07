@@ -1,0 +1,51 @@
+{
+  "context": "Tests whether the agent appends a correctly formatted technology decision entry to decisions.md without modifying prior entries, using the DEC-NNN sequential numbering, all 6 required fields, and the Technology category.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Prior entries preserved",
+      "description": "Output .arch/decisions.md still contains both DEC-001 and DEC-002 entries from the input file — they have not been removed, overwritten, or edited",
+      "max_score": 20
+    },
+    {
+      "name": "New entry uses DEC-003",
+      "description": "Output .arch/decisions.md contains a new entry with the heading `### [DEC-003]` (next sequential number after DEC-002)",
+      "max_score": 20
+    },
+    {
+      "name": "Decision field present",
+      "description": "The new DEC-003 entry contains a `**Decision:**` field",
+      "max_score": 8
+    },
+    {
+      "name": "Rationale field present",
+      "description": "The new DEC-003 entry contains a `**Rationale:**` field",
+      "max_score": 8
+    },
+    {
+      "name": "Alternatives field present",
+      "description": "The new DEC-003 entry contains an `**Alternatives:**` field",
+      "max_score": 8
+    },
+    {
+      "name": "Trade-offs field present",
+      "description": "The new DEC-003 entry contains a `**Trade-offs:**` field",
+      "max_score": 8
+    },
+    {
+      "name": "Risk field present",
+      "description": "The new DEC-003 entry contains a `**Risk:**` field",
+      "max_score": 8
+    },
+    {
+      "name": "Date field with ISO format",
+      "description": "The new DEC-003 entry contains a `**Date:**` field with a value in ISO 8601 format (e.g. YYYY-MM-DDTHH:MM:SSZ)",
+      "max_score": 10
+    },
+    {
+      "name": "Technology category used",
+      "description": "The new DEC-003 entry heading includes `Technology` as the category (e.g. `### [DEC-003] Phase 3 | Technology`)",
+      "max_score": 10
+    }
+  ]
+}

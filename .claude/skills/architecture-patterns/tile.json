@@ -1,0 +1,11 @@
+{
+  "name": "ahmed-habiba/architecture-patterns",
+  "version": "0.1.0",
+  "private": true,
+  "summary": "Knowledge base for architecture patterns, trade-offs, and selection criteria. Activates when recommending or evaluating architecture patterns like microservices, monolith, serverless, event-driven, CQRS, or hybrid approaches.",
+  "skills": {
+    "architecture-patterns": {
+      "path": "SKILL.md"
+    }
+  }
+}

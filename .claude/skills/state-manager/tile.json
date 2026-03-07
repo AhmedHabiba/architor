@@ -1,0 +1,11 @@
+{
+  "name": "ahmed-habiba/state-manager",
+  "version": "0.1.0",
+  "private": true,
+  "summary": "Manages architecture project state in .arch/state.json and .arch/decisions.md. Activates when reading or updating project phase state, tracking component acceptance, logging decisions, or validating phase transitions.",
+  "skills": {
+    "state-manager": {
+      "path": "SKILL.md"
+    }
+  }
+}

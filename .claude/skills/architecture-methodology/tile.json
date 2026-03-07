@@ -1,0 +1,11 @@
+{
+  "name": "ahmed-habiba/architecture-methodology",
+  "version": "0.1.0",
+  "private": true,
+  "summary": "Enforces 4-phase architecture design workflow. Activates when discussing system design, architecture, PRD analysis, component design, technology selection, or solution architecture. Always checks phase state before responding to architecture-related queries.",
+  "skills": {
+    "architecture-methodology": {
+      "path": "SKILL.md"
+    }
+  }
+}
