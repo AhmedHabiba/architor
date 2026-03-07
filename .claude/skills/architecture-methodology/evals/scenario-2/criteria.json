@@ -1,0 +1,51 @@
+{
+  "context": "Tests whether the agent identifies the full set of anti-patterns present in a flawed architecture proposal: unjustified technology, copy-paste architecture from large tech companies, over-engineering relative to team size, missing NFRs, and vague deferrals — without simply approving the proposal.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Flags unjustified technology",
+      "description": "architecture-review.md flags Kafka (or the event streaming choice) as mentioned without justification beyond citing Netflix/Uber",
+      "max_score": 12
+    },
+    {
+      "name": "Asks for alternatives",
+      "description": "architecture-review.md asks what alternatives to the chosen technology were considered",
+      "max_score": 10
+    },
+    {
+      "name": "Flags over-engineering",
+      "description": "architecture-review.md explicitly flags the mismatch between 14 services and a team of 3, questioning whether all components are necessary",
+      "max_score": 12
+    },
+    {
+      "name": "Flags missing availability NFR",
+      "description": "architecture-review.md flags that availability or uptime requirements are absent or marked TBD",
+      "max_score": 10
+    },
+    {
+      "name": "Flags missing security NFR",
+      "description": "architecture-review.md flags that security or compliance requirements (e.g. HIPAA) are deferred without a plan",
+      "max_score": 10
+    },
+    {
+      "name": "Flags missing monitoring NFR",
+      "description": "architecture-review.md flags that monitoring or alerting requirements are absent or vague",
+      "max_score": 10
+    },
+    {
+      "name": "Challenges deferral",
+      "description": "architecture-review.md challenges the security/HIPAA deferral with a specific question about the worst-case impact or quantifies the risk of deferring",
+      "max_score": 13
+    },
+    {
+      "name": "Challenges copy-paste",
+      "description": "architecture-review.md questions whether the architecture was chosen because it resembles large-scale companies (Netflix, Uber, Airbnb) rather than because it fits the team's actual requirements",
+      "max_score": 13
+    },
+    {
+      "name": "Does not approve",
+      "description": "architecture-review.md does NOT validate or endorse the proposal without raising substantive concerns",
+      "max_score": 10
+    }
+  ]
+}

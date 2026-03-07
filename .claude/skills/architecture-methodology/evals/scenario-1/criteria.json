@@ -1,0 +1,36 @@
+{
+  "context": "Tests whether the agent correctly enforces Phase 1 boundaries by refusing to engage with technology and architecture pattern questions, redirecting to completing requirements gathering instead, while remaining constructive about what comes next.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "No tech recommendation",
+      "description": "response.md does NOT endorse or recommend any specific technology named in the developer's message (e.g. Kafka, PostgreSQL, React) or any alternative technology",
+      "max_score": 20
+    },
+    {
+      "name": "No architecture pattern",
+      "description": "response.md does NOT recommend or evaluate microservices or any other architecture pattern",
+      "max_score": 15
+    },
+    {
+      "name": "No component design",
+      "description": "response.md does NOT describe component structures, service boundaries, or implementation details",
+      "max_score": 15
+    },
+    {
+      "name": "Explicit redirect",
+      "description": "response.md explicitly tells the developer that technology decisions cannot be made yet and directs them back to completing Phase 1 requirements first",
+      "max_score": 20
+    },
+    {
+      "name": "Phase gate referenced",
+      "description": "response.md references the current phase state, incomplete requirements, or the phase gate as the reason for deferring tech decisions",
+      "max_score": 15
+    },
+    {
+      "name": "Future path stated",
+      "description": "response.md tells the developer what will happen after Phase 1 is complete (i.e. that technology decisions will be made then)",
+      "max_score": 15
+    }
+  ]
+}
