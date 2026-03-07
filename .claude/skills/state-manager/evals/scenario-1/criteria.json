@@ -1,0 +1,31 @@
+{
+  "context": "Tests whether the agent correctly rejects an invalid backward phase transition by not modifying state.json, informing the user of valid transitions, directing them to /reopen, and logging a Process warning to decisions.md.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "state.json current_phase unchanged",
+      "description": "Output .arch/state.json still has `current_phase` set to `\"methodology\"` — the backward transition to `\"evaluation\"` was NOT applied",
+      "max_score": 30
+    },
+    {
+      "name": "Transition rejection communicated",
+      "description": "response.md (or decisions.md) contains a message stating the requested transition is not valid or not allowed",
+      "max_score": 15
+    },
+    {
+      "name": "Valid forward transitions stated",
+      "description": "response.md or the output communicates what the valid next phase(s) are from methodology",
+      "max_score": 15
+    },
+    {
+      "name": "Directs to /reopen",
+      "description": "response.md or the output explicitly directs the user to use `/reopen` for backward transitions",
+      "max_score": 15
+    },
+    {
+      "name": "Process warning logged",
+      "description": ".arch/decisions.md contains a new entry with category `Process` recording the invalid transition attempt",
+      "max_score": 25
+    }
+  ]
+}

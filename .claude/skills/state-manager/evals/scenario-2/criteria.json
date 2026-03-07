@@ -1,0 +1,26 @@
+{
+  "context": "Tests whether the agent correctly reads Phase 2 sub-phase flags and blocks a jump from pattern (accepted) to cross_cutting, enforcing that components_overview must be accepted first.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "sub_phase NOT changed to cross_cutting",
+      "description": "Output .arch/state.json does NOT have `sub_phase` set to `\"cross_cutting\"` — the skip was blocked",
+      "max_score": 30
+    },
+    {
+      "name": "state.json otherwise unchanged",
+      "description": "Output .arch/state.json has the same `current_phase`, `pattern_accepted`, `components_overview_accepted`, and `cross_cutting_accepted` values as the input",
+      "max_score": 20
+    },
+    {
+      "name": "components_overview referenced",
+      "description": "response.md or output explicitly references `components_overview` (or 'component map') as the sub-phase that must be completed next",
+      "max_score": 25
+    },
+    {
+      "name": "Sequential ordering explained",
+      "description": "response.md or output explains that Phase 2 sub-phases must be accepted in order, or that cross_cutting cannot begin until components_overview is accepted",
+      "max_score": 25
+    }
+  ]
+}
