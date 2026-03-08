@@ -125,6 +125,8 @@ The skills bundled with arch-agent are packaged as [Tessl](https://tessl.io) til
 
 The root `tessl.json` configures the project in `vendored` mode and pins the `tessl-labs/tessl-skill-eval-scenarios` dependency used by the eval runner. Tiles are currently `private: true`.
 
+> **Note:** `tessl.json` pins the dependency at a version string but does not include an integrity hash. If Tessl adds lockfile support in a future release, lock the dependency to prevent silent behavior changes from republished versions.
+
 Eval scenarios live alongside each skill at `.claude/skills/<name>/evals/`. Each `task.md` describes one scenario. When adding or changing skill behaviour, add or update the relevant scenarios before submitting a PR.
 
 #### Inline file scaffolding convention
