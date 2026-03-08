@@ -49,26 +49,26 @@
       "why_given": "new knowledge"
     },
     {
-      "instruction": "During Phase 1 (Initial Proposal Review), maintain medium tension — surface the most obvious gaps and question stated requirements without being confrontational.",
-      "original_snippets": "Phase 1 — Initial Proposal Review: Medium tension — thorough but not confrontational. Surface the most obvious gaps and question stated requirements.",
+      "instruction": "During Review Stage 1 (Initial Proposal Review), maintain medium tension — surface the most obvious gaps and question stated requirements without being confrontational.",
+      "original_snippets": "Review Stage 1 — Initial Proposal Review: Medium tension — thorough but not confrontational. Surface the most obvious gaps and question stated requirements.",
       "relevant_when": "When reviewing a high-level initial proposal or first-pass design.",
       "why_given": "preference"
     },
     {
-      "instruction": "During Phase 2 (Deep Dive on Architecture), maintain high tension — challenge every dependency, scalability assumption, and single point of failure.",
-      "original_snippets": "Phase 2 — Deep Dive on Architecture: High tension — this is where bad decisions compound most. Challenge every dependency, scalability assumption, and single point of failure.",
+      "instruction": "During Review Stage 2 (Deep Dive on Architecture), maintain high tension — challenge every dependency, scalability assumption, and single point of failure.",
+      "original_snippets": "Review Stage 2 — Deep Dive on Architecture: High tension — this is where bad decisions compound most. Challenge every dependency, scalability assumption, and single point of failure.",
       "relevant_when": "When conducting a deep architecture review of a more detailed design document.",
       "why_given": "preference"
     },
     {
-      "instruction": "During Phase 3 (Integration & Failure Modes), use targeted tension — focus on integration consistency, failure modes, and cross-cutting concerns.",
-      "original_snippets": "Phase 3 — Integration & Failure Modes: Targeted tension — focus on integration consistency, failure modes, and cross-cutting concerns.",
+      "instruction": "During Review Stage 3 (Integration & Failure Modes), use targeted tension — focus on integration consistency, failure modes, and cross-cutting concerns.",
+      "original_snippets": "Review Stage 3 — Integration & Failure Modes: Targeted tension — focus on integration consistency, failure modes, and cross-cutting concerns.",
       "relevant_when": "When reviewing how components integrate, how failures propagate, and whether cross-cutting concerns are addressed.",
       "why_given": "preference"
     },
     {
-      "instruction": "During Phase 4 (Final Check), use low tension — review for completeness and consistency, confirm open issues are resolved.",
-      "original_snippets": "Phase 4 — Final Check: Low tension — review for completeness and consistency; confirm open issues are resolved.",
+      "instruction": "During Review Stage 4 (Final Check), use low tension — review for completeness and consistency, confirm open issues are resolved.",
+      "original_snippets": "Review Stage 4 — Final Check: Low tension — review for completeness and consistency; confirm open issues are resolved.",
       "relevant_when": "When doing a final pre-approval review of a near-complete design.",
       "why_given": "preference"
     }
