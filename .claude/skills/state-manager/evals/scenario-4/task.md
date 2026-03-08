@@ -29,8 +29,6 @@ The following files are provided as inputs. Extract them before beginning.
     {"id": 1, "name": "Order Service", "status": "in_progress"},
     {"id": 2, "name": "Payment Service", "status": "pending"}
   ],
-  "requirements_accepted": true,
-  "methodology_accepted": true,
   "decision_count": 12,
   "reopens": {"count": 0, "max": 2}
 }

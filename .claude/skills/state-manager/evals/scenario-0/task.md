@@ -29,8 +29,6 @@ The following files are provided as inputs. Extract them before beginning.
     "finalization": {"status": "not_started"}
   },
   "components": [],
-  "requirements_accepted": false,
-  "methodology_accepted": false,
   "decision_count": 5,
   "reopens": {"count": 0, "max": 2}
 }

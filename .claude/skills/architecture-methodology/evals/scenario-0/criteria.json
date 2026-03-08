@@ -38,8 +38,8 @@
       "max_score": 8
     },
     {
-      "name": "requirements_accepted set true",
-      "description": "The output .arch/state.json has `requirements_accepted` set to `true`",
+      "name": "Phase 1 marked accepted in state",
+      "description": "The output .arch/state.json has `phases.evaluation.status` set to `\"accepted\"` and `current_phase` advanced to `\"methodology\"`",
       "max_score": 15
     },
     {

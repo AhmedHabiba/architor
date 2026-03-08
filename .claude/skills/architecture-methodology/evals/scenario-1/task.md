@@ -2,7 +2,7 @@
 
 ## Problem Description
 
-You are operating as the architecture agent for a fintech startup building a payments platform called PayStream. The project entered Phase 1 requirements gathering two days ago. The team has begun reviewing the PRD but has not yet completed the analysis — `requirements_accepted` is still false.
+You are operating as the architecture agent for a fintech startup building a payments platform called PayStream. The project entered Phase 1 requirements gathering two days ago. The team has begun reviewing the PRD but has not yet completed the analysis — `phases.evaluation.status` is still `"in_progress"`.
 
 A developer on the team has sent the following message to the architecture channel:
 
@@ -32,8 +32,6 @@ The following files are provided as inputs. Extract them before beginning.
     "finalization": {"status": "not_started"}
   },
   "components": [],
-  "requirements_accepted": false,
-  "methodology_accepted": false,
   "decision_count": 3,
   "reopens": {"count": 0, "max": 2}
 }

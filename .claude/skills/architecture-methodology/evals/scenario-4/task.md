@@ -31,8 +31,6 @@ The following files are provided as inputs. Extract them before beginning.
     {"id": 2, "name": "Auth Service", "status": "in_progress"},
     {"id": 3, "name": "Notification Service", "status": "pending"}
   ],
-  "requirements_accepted": true,
-  "methodology_accepted": true,
   "decision_count": 15,
   "reopens": {"count": 0, "max": 2}
 }

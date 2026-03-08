@@ -62,13 +62,14 @@ Before advancing to the next phase, verify all criteria are met:
 - [ ] All functional requirements documented
 - [ ] Non-functional requirements (availability, security, cost, monitoring) captured
 - [ ] Constraints and risks identified
-- [ ] `requirements_accepted` set to `true` in state
+- [ ] `phases.evaluation.status` set to `"accepted"` in state
 
 **Phase 2 → Phase 3:**
-- [ ] 2A: Architecture pattern chosen and justified (`pattern_accepted: true`)
-- [ ] 2B: High-level component map defined and technology stack decided (`components_overview_accepted: true`)
-- [ ] 2C: Cross-cutting concerns decided (`cross_cutting_accepted: true`)
+- [ ] 2A: Architecture pattern chosen and justified (`phases.methodology.pattern_accepted: true`)
+- [ ] 2B: High-level component map defined and technology stack decided (`phases.methodology.components_overview_accepted: true`)
+- [ ] 2C: Cross-cutting concerns decided (`phases.methodology.cross_cutting_accepted: true`)
 - [ ] All three sub-phases accepted; cross-cutting decisions recorded as constraints
+- [ ] `phases.methodology.status` set to `"accepted"` in state
 
 **Phase 3 → Phase 4:**
 - [ ] All components have `"status": "accepted"` in state

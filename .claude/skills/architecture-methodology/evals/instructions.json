@@ -37,33 +37,33 @@
       "why_given": "reminder"
     },
     {
-      "instruction": "Set `requirements_accepted` to `true` in state when Phase 1 is accepted.",
-      "original_snippets": "Phase 1 → Phase 2:\n- [ ] `requirements_accepted` set to `true` in state",
+      "instruction": "Set `phases.evaluation.status` to `\"accepted\"` in state when Phase 1 is accepted.",
+      "original_snippets": "Phase 1 → Phase 2:\n- [ ] `phases.evaluation.status` set to `\"accepted\"` in state",
       "relevant_when": "When transitioning from Phase 1 to Phase 2 after requirements are confirmed.",
       "why_given": "new knowledge"
     },
     {
-      "instruction": "Before advancing from Phase 2 to Phase 3, verify the architecture pattern is chosen and justified.",
-      "original_snippets": "Phase 2 → Phase 3:\n- [ ] Architecture pattern chosen and justified",
-      "relevant_when": "When completing Phase 2 methodology and preparing to move to component design.",
+      "instruction": "Before advancing from Phase 2 to Phase 3, verify 2A is accepted: architecture pattern chosen and justified (`phases.methodology.pattern_accepted: true`).",
+      "original_snippets": "Phase 2 → Phase 3:\n- [ ] 2A: Architecture pattern chosen and justified (`phases.methodology.pattern_accepted: true`)",
+      "relevant_when": "When completing Phase 2A and preparing to advance within Phase 2.",
       "why_given": "reminder"
     },
     {
-      "instruction": "Before advancing from Phase 2 to Phase 3, verify a high-level component list is defined.",
-      "original_snippets": "Phase 2 → Phase 3:\n- [ ] High-level component list defined",
-      "relevant_when": "When completing Phase 2 methodology and preparing to move to component design.",
+      "instruction": "Before advancing from Phase 2 to Phase 3, verify 2B is accepted: high-level component map defined and technology stack decided (`phases.methodology.components_overview_accepted: true`).",
+      "original_snippets": "Phase 2 → Phase 3:\n- [ ] 2B: High-level component map defined and technology stack decided (`phases.methodology.components_overview_accepted: true`)",
+      "relevant_when": "When completing Phase 2B and preparing to advance within Phase 2.",
       "why_given": "reminder"
     },
     {
-      "instruction": "Before advancing from Phase 2 to Phase 3, verify the technology stack is decided with rationale.",
-      "original_snippets": "Phase 2 → Phase 3:\n- [ ] Technology stack decided with rationale",
-      "relevant_when": "When completing Phase 2 methodology and preparing to move to component design.",
-      "why_given": "reminder"
+      "instruction": "Before advancing from Phase 2 to Phase 3, verify 2C is accepted: cross-cutting concerns decided (`phases.methodology.cross_cutting_accepted: true`). Cross-cutting decisions become constraints for all Phase 3 component designs.",
+      "original_snippets": "Phase 2 → Phase 3:\n- [ ] 2C: Cross-cutting concerns decided (`phases.methodology.cross_cutting_accepted: true`)\n- [ ] All three sub-phases accepted; cross-cutting decisions recorded as constraints",
+      "relevant_when": "When all three Phase 2 sub-phases appear complete and the user wants to move to Phase 3.",
+      "why_given": "new knowledge"
     },
     {
-      "instruction": "Set `methodology_accepted` to `true` in state when Phase 2 is accepted.",
-      "original_snippets": "Phase 2 → Phase 3:\n- [ ] `methodology_accepted` set to `true` in state",
-      "relevant_when": "When transitioning from Phase 2 to Phase 3 after methodology is confirmed.",
+      "instruction": "Set `phases.methodology.status` to `\"accepted\"` in state only when all three sub-phases (2A, 2B, 2C) are individually accepted.",
+      "original_snippets": "Phase 2 → Phase 3:\n- [ ] `phases.methodology.status` set to `\"accepted\"` in state",
+      "relevant_when": "When transitioning from Phase 2 to Phase 3 after all sub-phases are confirmed.",
       "why_given": "new knowledge"
     },
     {

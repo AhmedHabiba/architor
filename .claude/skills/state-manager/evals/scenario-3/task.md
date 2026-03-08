@@ -31,8 +31,6 @@ The following files are provided as inputs. Extract them before beginning.
     {"id": 2, "name": "Order Service", "status": "needs-review"},
     {"id": 3, "name": "Payment Service", "status": "pending"}
   ],
-  "requirements_accepted": true,
-  "methodology_accepted": true,
   "decision_count": 14,
   "reopens": {"count": 1, "max": 2}
 }

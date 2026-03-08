@@ -24,13 +24,17 @@ The following files are provided as inputs. Extract them before beginning.
   "current_phase": "methodology",
   "phases": {
     "evaluation": {"status": "accepted"},
-    "methodology": {"status": "in_progress"},
+    "methodology": {
+      "status": "in_progress",
+      "sub_phase": "pattern",
+      "pattern_accepted": false,
+      "components_overview_accepted": false,
+      "cross_cutting_accepted": false
+    },
     "components": {"status": "not_started"},
     "finalization": {"status": "not_started"}
   },
   "components": [],
-  "requirements_accepted": true,
-  "methodology_accepted": false,
   "decision_count": 8,
   "reopens": {"count": 0, "max": 2}
 }
