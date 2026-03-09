@@ -31,7 +31,7 @@ methodology → components     (when Phase 2 is fully accepted: pattern + compon
 components → finalization    (when ALL components accepted)
 ```
 
-Backward transitions are only allowed via /reopen (max 2 per project).
+Backward transitions are ONLY allowed via /reopen (max 2 per project).
 
 ### Phase 2 Sub-Phases
 ```

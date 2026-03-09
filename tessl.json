@@ -3,7 +3,8 @@
   "mode": "vendored",
   "dependencies": {
     "tessl-labs/tessl-skill-eval-scenarios": {
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "integrity": "pending-lockfile-support"
     }
   }
 }
