@@ -27,8 +27,7 @@ arch-agent/
 │   └── org-context.md           # Org context template
 ├── docs/
 │   ├── ARCHITECTURE.md          # System design document
-│   ├── METHODOLOGY.md           # Process methodology
-│   └── METHODOLOGY.md           # Process methodology details
+│   └── METHODOLOGY.md           # Process methodology
 └── output/                      # Generated deliverables
 ```
 

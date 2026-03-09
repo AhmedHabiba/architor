@@ -2,6 +2,25 @@
 
 All notable changes to Architor are documented here.
 
+## [2.1.3] — 2026-03-09
+
+### Tessl integration (PR #1)
+
+- Added Tessl tile packaging for all 4 architecture skills
+- Added 20 evaluation scenarios (5 per skill)
+- Expanded skill SKILL.md files with activation triggers and detailed instructions
+- Added CONTRIBUTING.md with Tessl integration guide
+- Updated CLAUDE.md with Phase 2A/2B/2C sub-phase rules and reopen limits
+
+### Post-merge fixes
+
+- Restored emphatic "ONLY" casing in state-manager SKILL.md
+- Added integrity placeholder to tessl.json dependency
+- Fixed stale SVG diagram references in CONTRIBUTING.md
+- Fixed duplicate METHODOLOGY.md entry in CONTRIBUTING.md project tree
+
+---
+
 ## [2.1.2] — 2026-03-07
 
 ### Documentation overhaul
@@ -15,14 +34,6 @@ All notable changes to Architor are documented here.
 - Updated system-level diagram to show actual file paths
 - Replaced non-existent SVG references in ARCHITECTURE.md with Mermaid diagrams
 - Converted component lifecycle ASCII art to Mermaid state diagrams
-
-### Tessl integration (PR #1)
-
-- Added Tessl tile packaging for all 4 architecture skills
-- Added 20 evaluation scenarios (5 per skill)
-- Expanded skill SKILL.md files with activation triggers and detailed instructions
-- Added CONTRIBUTING.md with Tessl integration guide
-- Updated CLAUDE.md with Phase 2A/2B/2C sub-phase rules and reopen limits
 
 ---
 
