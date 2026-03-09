@@ -1,0 +1,36 @@
+{
+  "context": "Tests whether the agent correctly advances the project from Phase 1 to Phase 2 by writing a valid state transition to state.json, incrementing decision_count, and appending a correctly formatted entry to decisions.md.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "current_phase updated",
+      "description": "Output .arch/state.json has `current_phase` set to `\"methodology\"` (advanced from `\"evaluation\"`)",
+      "max_score": 25
+    },
+    {
+      "name": "decision_count incremented",
+      "description": "Output .arch/state.json has `decision_count` greater than the input value of 5",
+      "max_score": 15
+    },
+    {
+      "name": "Decision entry appended",
+      "description": "Output .arch/decisions.md contains a new entry that was not present in the input — verifiable by the presence of a DEC-NNN heading",
+      "max_score": 15
+    },
+    {
+      "name": "All 6 decision fields present",
+      "description": "The new decision entry contains all of: Decision, Rationale, Alternatives, Trade-offs, Risk, Date (as bold fields)",
+      "max_score": 20
+    },
+    {
+      "name": "Valid category used",
+      "description": "The new decision entry uses one of the defined categories: Requirements, Pattern, Technology, Integration, Security, Infrastructure, Process, or Reopen",
+      "max_score": 10
+    },
+    {
+      "name": "Existing decisions preserved",
+      "description": "Prior entries already in .arch/decisions.md are still present in the output file — none have been removed or overwritten",
+      "max_score": 15
+    }
+  ]
+}

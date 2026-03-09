@@ -274,7 +274,7 @@ npx arch-agent import existing-architecture.md --name "My Project"
 
 The agent parses your document and walks through each phase, challenging your existing decisions. Accept what's solid, refine what's outdated. Imported projects get 5 reopens (vs 2) for more iteration room.
 
-**Requirements:** Node.js 18+, [Claude Code](https://docs.anthropic.com/en/docs/claude-code), Python 3, git
+**Requirements:** Node.js 18+, [Claude Code](https://docs.anthropic.com/en/docs/claude-code), Python 3, git. [Tessl](https://tessl.io) is optional — required only if you want to run skill evaluations or publish tiles.
 
 ## Commands
 
@@ -341,6 +341,7 @@ your-project/
 │   ├── prd.md                        # Your requirements (you edit this)
 │   ├── org-context.md                # Team, stack, constraints (you edit this)
 │   ├── decisions.md                  # Auto-generated decision log
+│   ├── existing-architecture.md      # Imported document (arch-agent import only)
 │   ├── scripts/
 │   │   ├── validate-transition.py    # Enforcement hook
 │   │   └── log-decision.py           # Auto-logging hook
@@ -350,9 +351,19 @@ your-project/
 │   ├── settings.json                 # Hook configuration
 │   ├── commands/                     # Slash commands
 │   └── skills/                       # Auto-activating skills
+│       ├── architecture-methodology/ # Core 4-phase workflow skill
+│       ├── architecture-patterns/    # Pattern knowledge base skill
+│       ├── challenge-assumptions/    # Adversarial reviewer skill
+│       └── state-manager/            # State machine skill
 └── output/
     └── architecture-document.md      # Final deliverable
 ```
+
+## Tessl Integration
+
+The skills bundled with arch-agent are packaged as [Tessl](https://tessl.io) tiles for versioning, distribution, and evaluation. Tessl is optional — required only if you want to run skill evaluations or publish tiles.
+
+For tile descriptions, setup instructions, eval commands, and publishing guidance, see [docs/CONTRIBUTING.md — Tessl Integration](docs/CONTRIBUTING.md#tessl-integration).
 
 ## CLI Reference
 

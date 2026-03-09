@@ -1,0 +1,51 @@
+{
+  "context": "Tests whether the agent follows the full 5-step decision workflow and produces a recommendation with all four required output sections: named pattern, why it fits, top risks, and migration trigger.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Pattern named explicitly",
+      "description": "recommendation.md contains an explicit named pattern recommendation (e.g. 'Recommended: Modular Monolith' or equivalent heading/label)",
+      "max_score": 12
+    },
+    {
+      "name": "Why it fits explained",
+      "description": "recommendation.md contains a section or paragraph explaining why the recommended pattern fits this specific team and system context (not just generic pattern properties)",
+      "max_score": 12
+    },
+    {
+      "name": "Top risks stated",
+      "description": "recommendation.md explicitly states the top risks or limitations of the recommended pattern",
+      "max_score": 12
+    },
+    {
+      "name": "Migration trigger provided",
+      "description": "recommendation.md provides a specific, actionable condition or trigger that should prompt the team to revisit or evolve the architecture",
+      "max_score": 12
+    },
+    {
+      "name": "Team context addressed",
+      "description": "recommendation.md shows evidence of applying team size/composition considerations (e.g. references team of 12 or the 2 DevOps constraint)",
+      "max_score": 10
+    },
+    {
+      "name": "Operational constraints addressed",
+      "description": "recommendation.md shows evidence of applying operational capacity constraints (e.g. references the DevOps headcount, absence of DBA, or monitoring maturity)",
+      "max_score": 10
+    },
+    {
+      "name": "Requirement signals addressed",
+      "description": "recommendation.md shows evidence of matching requirement signals to patterns (e.g. references the event-heavy domain, consistency needs, or PCI DSS compliance)",
+      "max_score": 10
+    },
+    {
+      "name": "Red flags checked",
+      "description": "recommendation.md either identifies a relevant red flag in the described system or explicitly confirms no red flags apply",
+      "max_score": 10
+    },
+    {
+      "name": "Single concrete recommendation",
+      "description": "recommendation.md names a single recommended pattern, not a vague 'it depends' response without a resolved recommendation",
+      "max_score": 12
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "ahmed-habiba/architecture-methodology",
+  "version": "0.1.0",
+  "private": true,
+  "summary": "Enforces a 4-phase architecture design workflow by reading `.arch/state.json` on every request to gate responses by phase. Phase 1 extracts and validates requirements from PRDs; Phase 2 selects architecture patterns and establishes high-level structure; Phase 3 designs and accepts components sequentially; Phase 4 finalises and documents the solution. Use when discussing system design, solution architecture, PRD analysis, component design, technology selection, or architecture patterns — distinct from general coding help by its strict phase-gating, anti-pattern detection, and state-tracked component acceptance.",
+  "skills": {
+    "architecture-methodology": {
+      "path": "SKILL.md"
+    }
+  }
+}
