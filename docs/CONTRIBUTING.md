@@ -28,7 +28,7 @@ arch-agent/
 ├── docs/
 │   ├── ARCHITECTURE.md          # System design document
 │   ├── METHODOLOGY.md           # Process methodology
-│   └── diagrams/*.svg           # Architecture diagrams
+│   └── METHODOLOGY.md           # Process methodology details
 └── output/                      # Generated deliverables
 ```
 
@@ -106,11 +106,10 @@ Commands and skills are harder to test deterministically because they rely on Cl
 
 ### Editing Diagrams
 
-SVG diagrams in `docs/diagrams/` are hand-crafted. When editing:
-- Maintain the existing color scheme (navy `#1B5E8A`, dark navy `#0F3652`, green `#27AE60`, amber `#F4D03F`, red `#E74C3C`)
-- Use the `Segoe UI, Arial, sans-serif` font stack
-- Keep diagrams readable at both full size and GitHub preview size
-- Test rendering in a browser before submitting
+All diagrams are embedded Mermaid blocks within Markdown files (README.md, ARCHITECTURE.md, METHODOLOGY.md). When editing:
+- Use Mermaid syntax (flowchart, stateDiagram-v2) — no external SVG or image files
+- Keep diagrams readable at GitHub preview size
+- Test rendering via GitHub preview or a Mermaid live editor before submitting
 
 ## Tessl Integration
 
