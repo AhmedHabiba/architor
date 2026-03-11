@@ -105,6 +105,7 @@ For each component (from Phase 3), include the full specification:
 - Security measures
 - Monitoring strategy
 - Failure modes and recovery
+- Traceability (requirements satisfied, cross-cutting compliance)
 
 ### 7. Technology Stack Summary
 Table format:
@@ -127,7 +128,7 @@ From pre-generation validation (probability x impact table).
 - Team allocation suggestions
 
 ### 11. Decision Log
-Complete chronological log from `.arch/decisions.md`
+Complete chronological log from `.arch/decisions.md`. For decisions with `Supersedes` links, note the chain of evolution.
 
 ### 12. Open Items & Recommendations
 - Unresolved gaps from Phase 1

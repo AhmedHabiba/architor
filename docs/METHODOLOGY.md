@@ -287,8 +287,20 @@ Every decision throughout all four phases is recorded with:
 - **Trade-offs**: What was sacrificed
 - **Residual risk**: What risk remains
 - **Timestamp**: When the decision was made
+- **Supersedes** (optional): Which previous decision this one replaces (from `/reopen` or `/alternative`)
+- **References** (optional): Which requirements (FR-NNN) or cross-cutting decisions (DEC-NNN) this decision traces to
 
 The decision log is the most valuable artifact of the process. When someone asks "why did we choose Kafka over RabbitMQ?" six months later, the answer — with full context — is in the log.
+
+### Traceability
+
+The decision log supports two forms of traceability:
+
+**Supersession** — When a decision is revisited via `/reopen` or `/alternative`, the new entry includes a `Supersedes: DEC-NNN` field pointing to the original. This creates an audit trail of decision evolution without editing previous entries (append-only integrity is preserved).
+
+**Cross-Phase References** — Component designs (Phase 3) include a Traceability section that maps to Phase 1 requirements (FR-NNN) and Phase 2C cross-cutting decisions (DEC-NNN). When these components are accepted, the acceptance decision entry carries the same references. This answers "which requirements does this component satisfy?" and "which components are affected if this cross-cutting decision changes?"
+
+Both fields are optional and backwards compatible with existing decision logs.
 
 ## Adapting the Methodology
 

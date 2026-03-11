@@ -60,10 +60,25 @@ Append-only file. Never edit previous entries. Format:
 - **Alternatives:** [What else was considered]
 - **Trade-offs:** [What was sacrificed]
 - **Risk:** [Any residual risk]
+- **Supersedes:** [DEC-NNN — only if this replaces a previous decision]
+- **References:** [FR-NNN, DEC-NNN — only if tracing to requirements or cross-cutting decisions]
 - **Date:** [ISO timestamp]
 ```
 
 Categories: Requirements | Pattern | Technology | Integration | Security | Infrastructure | Process | Reopen
+
+`Supersedes` and `References` are optional. Omit the line entirely when not applicable.
+
+### Supersession and Traceability Fields
+
+**Supersedes** — Use when a decision replaces a previous one:
+- `/reopen` creates a new decision that supersedes the original acceptance decision for the reopened target
+- `/alternative` creates a new decision that supersedes the previous proposal's decision
+- NEVER edit the superseded entry — the new entry points backward
+
+**References** — Use when a decision traces to requirements or earlier decisions:
+- Phase 3 component decisions should reference FR-NNN requirements they satisfy and DEC-NNN cross-cutting decisions from Phase 2C
+- Refinement decisions should reference the DEC-NNN of the original proposal being refined
 
 ### Automatic Logging Events
 Log a decision entry for:
