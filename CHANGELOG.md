@@ -2,6 +2,27 @@
 
 All notable changes to Architor are documented here.
 
+## [2.1.4] — 2026-03-13
+
+### Decision supersession tracking (PR #2)
+
+- Added `Supersedes: DEC-NNN` field to decision log for `/reopen` and `/alternative` commands
+- Added `References: FR-NNN, DEC-NNN` field for cross-phase traceability
+- Added Traceability section (section 9) to `/design-component` output with requirement checklists
+- Updated state-manager skill with supersession and traceability guidance and examples
+- Updated `/refine` to use `References` (evolves, not replaces) instead of `Supersedes`
+- Updated `/accept` to include `References` for Phase 2A, 2C, and Phase 3 acceptances
+- Updated `/generate-docs` to surface traceability and supersession chains in final document
+- Updated decision log template with examples showing both new fields
+
+### Improvements
+
+- Mapped workflow commands to phases in README Commands section
+- Renamed Tessl tiles from `ahmed-habiba/` to `emerge/` workspace, set `private: false`
+- Cleaned up feature branch after merge
+
+---
+
 ## [2.1.3] — 2026-03-09
 
 ### Tessl integration (PR #1)
