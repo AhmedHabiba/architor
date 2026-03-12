@@ -86,6 +86,8 @@ Then type `/analyze-prd` to begin. The agent walks you through four phases:
 | **2B. Components** | Maps all system components, dependencies, and integration points | `/propose-methodology` | `.arch/phase2-components-overview.md` |
 | **2C. Cross-Cutting** | Locks auth, observability, deployment, error handling, data management | `/propose-methodology` | `.arch/phase2-cross-cutting.md` |
 | **3. Design** | Details each component: technology + version, API contracts, failure modes, traceability to requirements | `/design-component [name]` | `.arch/components/[name].md` |
+
+> **Note:** The `[name]` argument is optional. If omitted, the agent picks the next component in logical dependency order (foundational first). After each `/accept`, the agent auto-advances to the next pending component — you only need to call `/design-component` once.
 | **4. Document** | Validates end-to-end consistency, builds risk register, generates final doc | `/generate-docs` | `output/architecture-document.md` |
 
 **4. Review and accept at each gate**
@@ -177,9 +179,9 @@ The agent extracts 14 functional requirements and flags 4 critical gaps: no ment
 
 **Phase 3 — Design:**
 ```
-/design-component product-catalog
+/design-component
 ```
-The agent designs each component one at a time. For Product Catalog: PostgreSQL 16 with full-text search, REST API with pagination, Redis 7 cache for hot products, failure mode if Redis is down (fall through to DB). Each component includes a traceability section mapping to Phase 1 requirements (FR-NNN) and Phase 2C cross-cutting decisions (DEC-NNN). Team accepts. Agent advances to Shopping Cart, then Checkout & Payments, and so on.
+The agent picks the first component in dependency order (e.g., Product Catalog) and designs it: PostgreSQL 16 with full-text search, REST API with pagination, Redis 7 cache for hot products, failure mode if Redis is down (fall through to DB). Each component includes a traceability section mapping to Phase 1 requirements (FR-NNN) and Phase 2C cross-cutting decisions (DEC-NNN). Team accepts — agent auto-advances to Shopping Cart, then Checkout & Payments, and so on. No need to call `/design-component` again.
 
 *Artifacts produced: `.arch/components/product-catalog.md`, `.arch/components/shopping-cart.md`, etc.*
 *Decisions logged: DEC-010 through DEC-021*
@@ -296,7 +298,7 @@ The agent parses your document and walks through each phase, challenging your ex
 | **2A. Pattern** | `/propose-methodology` | Propose architecture pattern with rationale |
 | **2B. Components** | `/propose-methodology` | Map all system components and dependencies |
 | **2C. Cross-Cutting** | `/propose-methodology` | Lock auth, observability, deployment, error handling |
-| **3. Design** | `/design-component [name]` | Detail one component (sequential, one at a time) |
+| **3. Design** | `/design-component [name]` | Detail one component (name optional — auto-picks next in dependency order; auto-advances after each `/accept`) |
 | **4. Finalization** | `/generate-docs` | Validate consistency and generate final document |
 | *Import* | `/import-architecture` | Import an existing architecture document (must be at `not_started`) |
 
