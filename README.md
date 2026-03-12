@@ -85,7 +85,7 @@ Then type `/analyze-prd` to begin. The agent walks you through four phases:
 | **2A. Pattern** | Proposes architecture pattern with rationale and alternatives | `/propose-methodology` | `.arch/phase2-methodology.md` |
 | **2B. Components** | Maps all system components, dependencies, and integration points | `/propose-methodology` | `.arch/phase2-components-overview.md` |
 | **2C. Cross-Cutting** | Locks auth, observability, deployment, error handling, data management | `/propose-methodology` | `.arch/phase2-cross-cutting.md` |
-| **3. Design** | Details each component: technology + version, API contracts, failure modes | `/design-component [name]` | `.arch/components/[name].md` |
+| **3. Design** | Details each component: technology + version, API contracts, failure modes, traceability to requirements | `/design-component [name]` | `.arch/components/[name].md` |
 | **4. Document** | Validates end-to-end consistency, builds risk register, generates final doc | `/generate-docs` | `output/architecture-document.md` |
 
 **4. Review and accept at each gate**
@@ -179,7 +179,7 @@ The agent extracts 14 functional requirements and flags 4 critical gaps: no ment
 ```
 /design-component product-catalog
 ```
-The agent designs each component one at a time. For Product Catalog: PostgreSQL 16 with full-text search, REST API with pagination, Redis 7 cache for hot products, failure mode if Redis is down (fall through to DB). The agent checks compliance against Phase 2C cross-cutting decisions. Team accepts. Agent advances to Shopping Cart, then Checkout & Payments, and so on.
+The agent designs each component one at a time. For Product Catalog: PostgreSQL 16 with full-text search, REST API with pagination, Redis 7 cache for hot products, failure mode if Redis is down (fall through to DB). Each component includes a traceability section mapping to Phase 1 requirements (FR-NNN) and Phase 2C cross-cutting decisions (DEC-NNN). Team accepts. Agent advances to Shopping Cart, then Checkout & Payments, and so on.
 
 *Artifacts produced: `.arch/components/product-catalog.md`, `.arch/components/shopping-cart.md`, etc.*
 *Decisions logged: DEC-010 through DEC-021*
@@ -200,16 +200,16 @@ arch-agent produces architecture artifacts throughout the process, not just at t
 
 | Artifact | Location | When Produced | Contents |
 |----------|----------|---------------|----------|
-| **Decision log** | `.arch/decisions.md` | Every phase | Each decision with ID, rationale, alternatives, trade-offs, and risk |
+| **Decision log** | `.arch/decisions.md` | Every phase | Each decision with ID, rationale, alternatives, trade-offs, risk, and supersession/traceability links |
 | **PRD evaluation** | `.arch/phase1-evaluation.md` | Phase 1 | Extracted requirements, gaps rated by severity, risk assessment |
 | **Architecture pattern** | `.arch/phase2-methodology.md` | Phase 2A | Chosen pattern, rationale, alternatives compared |
 | **Component map** | `.arch/phase2-components-overview.md` | Phase 2B | All components, dependencies, integration points |
 | **Cross-cutting decisions** | `.arch/phase2-cross-cutting.md` | Phase 2C | Auth, observability, deployment, error handling, data strategies |
-| **Component designs** | `.arch/components/[name].md` | Phase 3 | Technology + version, API contracts, failure modes, scaling |
+| **Component designs** | `.arch/components/[name].md` | Phase 3 | Technology + version, API contracts, failure modes, scaling, traceability to requirements |
 | **Review findings** | `.arch/reviews/[name].md` | Phase 3 (optional) | Adversarial review results from `/review-component` |
 | **Architecture document** | `output/architecture-document.md` | Phase 4 | Comprehensive deliverable consolidating all decisions |
 
-**Example decision log entry:**
+**Example decision log entries:**
 ```
 ### [DEC-003] Phase 2A | Architecture Pattern
 - Decision: Modular monolith with event-driven boundaries
@@ -217,6 +217,16 @@ arch-agent produces architecture artifacts throughout the process, not just at t
 - Alternatives: Microservices (rejected: team too small), Serverless (rejected: cold start latency)
 - Trade-offs: Sacrifices independent deployment for operational simplicity
 - Risk: Module boundaries may need extraction to services at 10x scale
+- References: FR-001, FR-003, FR-008
+- Date: 2026-03-10T14:00:00Z
+
+### [DEC-012] Phase 2A | Reopen
+- Decision: Reopened architecture pattern — compliance requires data residency
+- Rationale: Legal review found GDPR data residency requirements incompatible with single-region serverless
+- Trade-offs: Progress reset on 5 items
+- Risk: Reopens remaining: 1 of 2
+- Supersedes: DEC-003
+- Date: 2026-03-11T09:00:00Z
 ```
 
 **Example component design (abbreviated):**
@@ -236,10 +246,10 @@ Failure Modes:
   - Database failover -> Read replica promotion, ~30s token delay
   - Token leak -> Revocation endpoint + short-lived tokens (5min)
 
-Cross-Cutting Compliance:
-  Auth: RS256 JWT per Phase 2C decision DEC-007
-  Observability: Structured JSON logs, login attempt metrics
-  Deployment: Helm chart, horizontal pod autoscaler
+Traceability:
+  Requirements: FR-002 (user authentication), FR-009 (session management)
+  Cross-Cutting: DEC-007 (RS256 JWT), DEC-008 (structured JSON logging)
+  Depends On: API Gateway
 ```
 
 ## When to Use arch-agent
@@ -319,7 +329,7 @@ flowchart LR
     DECIDE -->|"/alternative"| PROPOSE
 ```
 
-Decisions are **immutable once accepted** — unless you spend one of your limited reopens (max 2 per project). Reopening cascades: changing an early decision un-accepts everything downstream.
+Decisions are **immutable once accepted** — unless you spend one of your limited reopens (max 2 per project). Reopening cascades: changing an early decision un-accepts everything downstream. New decisions that replace old ones carry a `Supersedes: DEC-NNN` link, creating an auditable chain of evolution without editing previous entries.
 
 ## Key Design Decisions
 
