@@ -116,12 +116,12 @@ The skills bundled with arch-agent are packaged as [Tessl](https://tessl.io) til
 
 | Tile | Purpose |
 |------|---------|
-| `ahmed-habiba/architecture-methodology` | Enforces the 4-phase workflow; activates on any system design or architecture discussion |
-| `ahmed-habiba/state-manager` | Reads and writes `.arch/state.json` and `.arch/decisions.md`; tracks phase and component acceptance |
-| `ahmed-habiba/challenge-assumptions` | Adversarial reviewer that questions technology choices, scalability assumptions, and single points of failure |
-| `ahmed-habiba/architecture-patterns` | Knowledge base for pattern selection (microservices, monolith, serverless, event-driven, CQRS) with trade-off comparison |
+| `emerge/architecture-methodology` | Enforces the 4-phase workflow; activates on any system design or architecture discussion |
+| `emerge/state-manager` | Reads and writes `.arch/state.json` and `.arch/decisions.md`; tracks phase and component acceptance |
+| `emerge/challenge-assumptions` | Adversarial reviewer that questions technology choices, scalability assumptions, and single points of failure |
+| `emerge/architecture-patterns` | Knowledge base for pattern selection (microservices, monolith, serverless, event-driven, CQRS) with trade-off comparison |
 
-The root `tessl.json` configures the project in `vendored` mode and pins the `tessl-labs/tessl-skill-eval-scenarios` dependency used by the eval runner. Tiles are currently `private: true`.
+The root `tessl.json` configures the project in `vendored` mode and pins the `tessl-labs/tessl-skill-eval-scenarios` dependency used by the eval runner. Tiles are public under the `emerge` workspace.
 
 > **Note:** `tessl.json` pins the dependency at a version string but does not include an integrity hash. If Tessl adds lockfile support in a future release, lock the dependency to prevent silent behavior changes from republished versions.
 
@@ -194,7 +194,7 @@ tessl search architecture
 
 ### Publishing
 
-Tiles are currently `private: true`. To publish a tile to the Tessl registry, set `"private": false` in the relevant `tile.json` and run:
+Tiles are public. To publish a tile to the Tessl registry, run:
 
 ```bash
 tessl publish

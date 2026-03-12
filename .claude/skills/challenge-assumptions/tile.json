@@ -1,7 +1,7 @@
 {
-  "name": "ahmed-habiba/challenge-assumptions",
+  "name": "emerge/challenge-assumptions",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "summary": "Adversarial reviewer personality for architecture discussions. Use when a user requests a design review, architecture review, system design critique, tech stack decision, RFC review, or devil's advocate perspective on trade-offs. Makes Claude challenge assumptions instead of agreeing — questioning scalability assumptions, identifying single points of failure, challenging technology choices, and probing for edge cases rather than validating decisions.",
   "skills": {
     "challenge-assumptions": {
