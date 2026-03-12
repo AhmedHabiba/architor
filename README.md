@@ -288,15 +288,17 @@ The agent parses your document and walks through each phase, challenging your ex
 
 ## Commands
 
-### Workflow commands
+### Workflow commands (phase sequence)
 
-| Command | Description |
-|---------|-------------|
-| `/analyze-prd` | Evaluate PRD, find gaps, assess risks |
-| `/propose-methodology` | Architecture pattern, component map, cross-cutting decisions |
-| `/design-component [name]` | Detailed design for one component |
-| `/generate-docs` | Validate and generate final architecture document |
-| `/import-architecture` | Import and review an existing architecture document |
+| Phase | Command | Description |
+|-------|---------|-------------|
+| **1. Evaluation** | `/analyze-prd` | Evaluate PRD, find gaps, assess risks |
+| **2A. Pattern** | `/propose-methodology` | Propose architecture pattern with rationale |
+| **2B. Components** | `/propose-methodology` | Map all system components and dependencies |
+| **2C. Cross-Cutting** | `/propose-methodology` | Lock auth, observability, deployment, error handling |
+| **3. Design** | `/design-component [name]` | Detail one component (sequential, one at a time) |
+| **4. Finalization** | `/generate-docs` | Validate consistency and generate final document |
+| *Import* | `/import-architecture` | Import an existing architecture document (must be at `not_started`) |
 
 ### Decision commands
 
