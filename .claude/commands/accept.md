@@ -45,7 +45,7 @@ Check `phases.methodology.sub_phase`:
     1. Say: "Component [name] accepted. Progress: [X of Y] complete."
     2. Say: "Auto-advancing to next component..."
     3. Add a brief separator line: "---"
-    4. **Proceed to design the next component** using the same process defined in the `/design-component` command. Refer to that command's instructions for the full detailed design process including all 8 sections, cross-cutting compliance check, consistency check against accepted components, and adversarial challenge before acceptance.
+    4. **Proceed to design the next component** using the same process defined in the `/design-component` command. Refer to that command's instructions for the full detailed design process including all 9 sections, cross-cutting compliance check, consistency check against accepted components, and adversarial challenge before acceptance.
 
 **If `current_phase` is `finalization` and document is generated:**
 - Confirm: "You are approving the final architecture document. This completes the architecture design process. Do you ACCEPT? (yes/no)"
