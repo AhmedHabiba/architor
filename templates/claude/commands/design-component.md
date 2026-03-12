@@ -65,6 +65,22 @@ If org-context lists a preferred technology, acknowledge it:
 - **Justification:** [why this rating]
 - **Build estimate:** [rough t-shirt size: days/weeks]
 
+### 9. Traceability
+
+Read `.arch/phase1-evaluation.md` for FR-NNN identifiers. Read `.arch/decisions.md` for Phase 2C DEC-NNN entries.
+
+**Requirements Satisfied:**
+- [ ] FR-NNN: [requirement description] — [how this component addresses it]
+- [ ] FR-NNN: [requirement description] — [how this component addresses it]
+(list every FR-NNN from Phase 1 evaluation that this component directly satisfies)
+
+**Cross-Cutting Compliance:**
+- [ ] DEC-NNN: [cross-cutting decision] — [how this component complies]
+- [ ] DEC-NNN: [cross-cutting decision] — [how this component complies]
+(list every Phase 2C DEC-NNN that applies to this component)
+
+**Depends On:** [list other components this design depends on, if any]
+
 After presenting:
 - Write component design to `.arch/components/[component-name].md`
 - Update `.arch/state.json`: set `current_component`, update component status to `awaiting_acceptance`

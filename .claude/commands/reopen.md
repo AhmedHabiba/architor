@@ -64,6 +64,7 @@ If justification is missing, ask: "What changed that requires reopening [target]
   - **Cascade:** [list of items that were un-accepted or marked needs-review]
   - **Trade-offs:** Progress reset on [count] items
   - **Risk:** Reopens remaining: [max - count]
+  - **Supersedes:** [DEC-NNN — look up the most recent acceptance decision for the reopened target in decisions.md]
   - **Date:** [timestamp]
   ```
 

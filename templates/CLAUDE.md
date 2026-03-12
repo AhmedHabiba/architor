@@ -52,8 +52,12 @@ Every decision appended to `.arch/decisions.md`:
 - **Alternatives:** What else was considered
 - **Trade-offs:** What was sacrificed
 - **Risk:** Residual risk
+- **Supersedes:** DEC-NNN (only when replacing a previous decision — from /reopen or /alternative)
+- **References:** FR-NNN, DEC-NNN (only when tracing to requirements or cross-cutting decisions)
 - **Date:** [timestamp]
 ```
+
+`Supersedes` and `References` are optional. Omit them when not applicable.
 
 ## Slash Commands Available
 

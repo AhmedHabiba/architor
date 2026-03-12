@@ -60,10 +60,53 @@ Append-only file. Never edit previous entries. Format:
 - **Alternatives:** [What else was considered]
 - **Trade-offs:** [What was sacrificed]
 - **Risk:** [Any residual risk]
+- **Supersedes:** [DEC-NNN — only if this replaces a previous decision]
+- **References:** [FR-NNN, DEC-NNN — only if tracing to requirements or cross-cutting decisions]
 - **Date:** [ISO timestamp]
 ```
 
 Categories: Requirements | Pattern | Technology | Integration | Security | Infrastructure | Process | Reopen
+
+`Supersedes` and `References` are optional. Omit the line entirely when not applicable.
+
+### Supersession and Traceability Fields
+
+**Supersedes** — Use when a decision replaces a previous one:
+- `/reopen` creates a new decision that supersedes the original acceptance decision for the reopened target
+- `/alternative` creates a new decision that supersedes the previous proposal's decision
+- Format: `**Supersedes:** DEC-003` (single) or `**Supersedes:** DEC-003, DEC-007` (multiple)
+- NEVER edit the superseded entry — the new entry points backward (like RFC "Obsoletes:" fields)
+
+**References** — Use when a decision traces to requirements or earlier decisions:
+- Phase 3 component technology decisions should reference the FR-NNN requirements they satisfy
+- Phase 3 component decisions should reference applicable DEC-NNN cross-cutting decisions from Phase 2C
+- Phase 2 acceptance decisions should reference the FR-NNN requirements that drove the pattern choice
+- Refinement decisions should reference the DEC-NNN of the original proposal being refined
+- Format: `**References:** FR-001, FR-003, DEC-005`
+
+**Example — supersession (reopen scenario):**
+```
+### [DEC-012] Phase 2A | Reopen
+- **Decision:** Reopened architecture pattern selection
+- **Rationale:** New compliance requirement invalidates serverless approach
+- **Alternatives:** Could have added compliance layer on top of existing pattern
+- **Trade-offs:** Progress reset on 5 items
+- **Risk:** Reopens remaining: 1 of 2
+- **Supersedes:** DEC-004
+- **Date:** 2026-03-11T14:00:00Z
+```
+
+**Example — traceability (component design):**
+```
+### [DEC-015] Phase 3 | Technology
+- **Decision:** Selected PostgreSQL 16 for order-service data store
+- **Rationale:** ACID compliance required for financial transactions; team has production experience
+- **Alternatives:** MongoDB 7 (flexible schema but lacks native ACID), CockroachDB 24 (distributed but overkill)
+- **Trade-offs:** Schema migrations required; less flexibility than document store
+- **Risk:** Single-node bottleneck if order volume exceeds 50K TPS
+- **References:** FR-003, FR-012, DEC-008, DEC-009
+- **Date:** 2026-03-11T15:30:00Z
+```
 
 ### Automatic Logging Events
 Log a decision entry for:

@@ -15,8 +15,9 @@ You are an **Architecture Agent** — a senior solution architect who guides use
 Before EVERY response, read `.arch/state.json` to know:
 - Current phase (evaluation, methodology, components, finalization)
 - Phase status (in_progress, awaiting_acceptance, accepted)
+- Methodology sub-phase (pattern, components_overview, cross_cutting)
 - Which components are accepted vs pending
-- Any blockers or open items
+- Reopen count and history
 
 NEVER rely on conversation memory for phase state. ALWAYS read the file.
 
@@ -51,8 +52,12 @@ Every decision appended to `.arch/decisions.md`:
 - **Alternatives:** What else was considered
 - **Trade-offs:** What was sacrificed
 - **Risk:** Residual risk
+- **Supersedes:** DEC-NNN (only when replacing a previous decision — from /reopen or /alternative)
+- **References:** FR-NNN, DEC-NNN (only when tracing to requirements or cross-cutting decisions)
 - **Date:** [timestamp]
 ```
+
+`Supersedes` and `References` are optional. Omit them when not applicable.
 
 ## Slash Commands Available
 
@@ -123,12 +128,12 @@ The skills in this project are packaged as [Tessl](https://tessl.io) tiles for v
 
 | Tile | File | Purpose |
 |------|------|---------|
-| `ahmed-habiba/architecture-methodology` | `SKILL.md` | Core 4-phase workflow orchestrator |
-| `ahmed-habiba/state-manager` | `SKILL.md` | State machine reads/writes and decision logging |
-| `ahmed-habiba/challenge-assumptions` | `SKILL.md` | Adversarial reviewer personality |
-| `ahmed-habiba/architecture-patterns` | `SKILL.md` | Pattern knowledge base and selection criteria |
+| `emerge/architecture-methodology` | `SKILL.md` | Core 4-phase workflow orchestrator |
+| `emerge/state-manager` | `SKILL.md` | State machine reads/writes and decision logging |
+| `emerge/challenge-assumptions` | `SKILL.md` | Adversarial reviewer personality |
+| `emerge/architecture-patterns` | `SKILL.md` | Pattern knowledge base and selection criteria |
 
-The root `tessl.json` defines the project as `vendored` mode and pins the `tessl-labs/tessl-skill-eval-scenarios` dependency used by the eval runner. Tiles are currently `private: true`.
+The root `tessl.json` defines the project as `vendored` mode and pins the `tessl-labs/tessl-skill-eval-scenarios` dependency used by the eval runner. Tiles are public and published to the Tessl registry under the `emerge` workspace.
 
 The Tessl MCP server is **opt-in** — `.mcp.json` and `.claude/settings.local.json` are gitignored and must be created locally. Only set them up when running or publishing evals. See `docs/CONTRIBUTING.md` → "Running Evals" for setup instructions.
 

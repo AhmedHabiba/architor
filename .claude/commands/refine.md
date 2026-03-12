@@ -30,7 +30,17 @@ The user wants to refine the current proposal. Their feedback is in $ARGUMENTS.
 
 After refinement:
 - Status remains `awaiting_acceptance`
-- Append refinement to `.arch/decisions.md` with what was changed and why
+- Append to `.arch/decisions.md`:
+  ```
+  ### [DEC-NNN] Phase X | Refinement
+  - **Decision:** Refined [target] — [brief description of what changed]
+  - **Rationale:** [user's feedback that drove the refinement]
+  - **Alternatives:** Previous version: [what was changed from]
+  - **Trade-offs:** [any trade-offs introduced by the refinement]
+  - **Risk:** [any new risk from the change]
+  - **References:** [DEC-NNN of the original proposal being refined]
+  - **Date:** [timestamp]
+  ```
 - Ask for acceptance again
 
 $ARGUMENTS
